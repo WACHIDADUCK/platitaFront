@@ -9,7 +9,7 @@ function App() {
 
   const Consulta = async () => {
     const response = await fetch("http://platita.test/api/usuario", { credentials: "include", });
-
+    console.log(response);
     if (response.redirected) {
       window.location.href = response.url;
       return;
