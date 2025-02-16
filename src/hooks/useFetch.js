@@ -8,15 +8,15 @@ export const useFetch = (url) => {
     const fetchData = useCallback(async () => {
         setLoading(true);
         try {
-            const res = await fetch(url);
-            if(!res.ok) throw Error("Error en la petición");
+            const res = await fetch(url, { credentials: "include" });
+            if (!res.ok) throw Error("Error en la petición");
             const json = await res.json();
             setData(json);
         } catch (error) {
             setError(error);
         } finally {
             setLoading(false);
-        }        
+        }
     }, [url]);
 
     useEffect(() => {
