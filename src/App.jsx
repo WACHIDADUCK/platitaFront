@@ -4,6 +4,7 @@ import { ContextProvider } from './providers/ContextProvider';
 import Layout from './layouts/Layout';
 import Home from './pages/Home';
 import Asociaciones from './pages/Asociaciones';
+import Eventos from './pages/Eventos';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
               {/* <Route path="/Personaje/:id" element={<Personaje />} />
               <Route path="/BlogCharacters" element={<BlogCharacter />} /> */}
               <Route path='/asociaciones' element={<Asociaciones />} />
+              <Route path='/eventos' element={<Eventos />} />
             </Route>
           </Routes>
         </ContextProvider>
