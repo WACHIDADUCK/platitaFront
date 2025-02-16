@@ -7,14 +7,25 @@ export default function Eventos() {
     //https://guillermo.informaticamajada.es
     const { data, loading, error } = useFetch("http://platita.test/api/evento");
     const [eventos, setEventos] = useState([]);
-    const [field, setField] = useState("nombre");
 
     const handleChange = (e) => {
-        setSearchParams({ [e.target.name]: e.target.value });
+        searchParams.set(e.target.name, e.target.value)
+        setSearchParams(searchParams);
     };
 
     const handleFilter = () => {
-        return eventos.filter(item => item[field].includes(searchParams.get(`${field}`) || ""))
+        return eventos.filter(item => {
+            const nombreFilter = searchParams.get("nombre");
+            const descripcionFilter = searchParams.get("descripcion");
+            const fechaFilter = searchParams.get("fecha");
+
+            // Aplicar todos los filtros a la vez
+            return (
+                (!nombreFilter || item.nombre.includes(nombreFilter)) &&
+                (!descripcionFilter || item.descripcion.includes(descripcionFilter)) &&
+                (!fechaFilter || item.fecha.includes(fechaFilter))
+            );
+        });
     }
 
     useEffect(() => {
@@ -27,9 +38,8 @@ export default function Eventos() {
     return (
         <div>
             <h1>Eventos</h1>
-            <input type="text" name={field} onChange={handleChange} alt='Buscador' value={searchParams.get(`${field}`) || ""}></input>
-            <button onClick={() => setField("nombre")}>Nombre</button>
-            <button onClick={() => setField("descripcion")}>Descripción</button>
+            <input type="text" name="nombre" onChange={handleChange} alt='Buscador' value={searchParams.get("nombre") || ""} />
+            <input type="text" name="descripcion" onChange={handleChange} alt='Buscador' value={searchParams.get("descripcion") || ""} />
             <div>
                 {handleFilter().map(evento => {
                     return <div key={evento.id}>
