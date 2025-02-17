@@ -1,4 +1,4 @@
-import ListaAsociaciones from "../components/listaAsociaciones";
+import ListaAsociaciones from "../components/ListaAsociaciones";
 import { Link } from "react-router-dom";
 
 export default function Asociaciones() {
