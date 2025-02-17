@@ -7,7 +7,11 @@ export default function Asociaciones() {
         <div className="asociacionesContainer">
             <div className="col-1">
                 <div className="asideDiv justify-center">
-                    <Link className="link" to="/crearAsociacion"> Crear Asociacion</Link>
+                    <Link className="link" to="/crear_asociacion"> Crear Asociacion</Link>
+                </div>
+
+                <div className="asideDiv misAsociaciones">
+                    <h4>Asociacioes que siguo</h4>
                 </div>
 
                 <div className="asideDiv misAsociaciones">
