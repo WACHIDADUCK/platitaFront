@@ -32,13 +32,172 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
 
-.border{
+.border {
   border: 1px solid black;
   border-radius: 20px;
 }
+
+
+body{
+  background-color: #F1EFEA;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+main {
+  flex: 1; /* Hace que el contenido principal ocupe el espacio restante */
+  padding: 20px; /* Opcional: añade un poco de espacio interno */
+}
+/* NavBar */
+
+.logo{
+  width: 50px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #FFFFFF;
+  color: white;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.navbar a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navbar a:hover {
+  color: #faa646;
+}
+
+.navbar ul {
+  display: flex;
+}
+
+.navbar li {
+  margin-right: 20px;
+  list-style-type: none;
+}
+
+.navbar li:last-child {
+  margin-right: 0;
+}
+
+/* Footer */
+.footer {
+  background-color: #fff;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  font-size: 16px;
+  padding: 0.1rem 0 1.5rem;
+  display: flex;
+  justify-content: center;
+  margin-top: auto; /* Empuja el footer hacia abajo */
+  margin-top: 20px;
+}
+
+.footer__content {
+  text-align: center;
+}
+
+.footer__links {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Espacio entre los enlaces */
+}
+
+.footer__links a {
+  color: #333;
+  text-decoration: none;
+}
+
+.footer__links a:hover {
+  text-decoration: underline;
+}
+
+.asociacionesContainer{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.cards-header{
+  background-color: #fff  ;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 10px 0px;
+}
+
+
+.asociacion-card{
+  padding: 7px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.asociacion-card img{
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+}
+
+.asociacion-card .asociacion-header h3{
+justify-self: start;
+margin-left: 0.1rem;
+}
+
+.asociacionesContainer .col-1{
+  margin: 0px 7px 0px 0px;
+  width: 50%;
+}
+
+.asociacionesContainer .col-2{
+  margin: 20px;
+}
+
+
+.asideDiv{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  width: 100%;
+  background-color: #fff;
+  padding: 20px 0px;
+}
+
+
+.asideDiv .link{
+background-color: #287FB8;
+color: #fff;
+text-decoration: none;
+padding: 10px;
+border-radius: 7px;
+}
+
+.asideDiv .flex-start{
+  display: flex;
+  justify-content: flex-start;
+}
+
+.asideDiv .misAsociaciones{
+  display: flex;
+  justify-content: start;
+}                    
