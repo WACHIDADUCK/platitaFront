@@ -11,7 +11,7 @@ export default function Asociaciones() {
                 </div>
 
                 <div className="asideDiv misAsociaciones">
-                    <h4>Asociacioes que siguo</h4>
+                    <h4>Asociaciones que sigo</h4>
                 </div>
 
                 <div className="asideDiv misAsociaciones">

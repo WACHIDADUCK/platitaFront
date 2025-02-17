@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Asociaciones from './pages/Asociaciones';
 import Eventos from './pages/Eventos';
 import CrearAsociacion from './pages/CrearAsociacion';
+import CrearEvento from './pages/CrearEvento';
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
               <Route path="/BlogCharacters" element={<BlogCharacter />} /> */}
               <Route path='/crear_asociacion' element={<CrearAsociacion />} />
               <Route path='/asociaciones' element={<Asociaciones />} />
+              <Route path='/crear_evento' element={<CrearEvento />} />
               <Route path='/eventos' element={<Eventos />} />
             </Route>
           </Routes>
