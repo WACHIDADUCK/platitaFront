@@ -15,10 +15,17 @@ export default function CrearEvento() {
 
         // Convertir FormData a un objeto plano
         const nuevoEvento = Object.fromEntries(formData.entries());
+        nuevoEvento.aforo = parseFloat(nuevoEvento.aforo);
+        nuevoEvento.aforo_socios = parseFloat(nuevoEvento.aforo_socios);
+        nuevoEvento.aforo_no_socios = parseFloat(nuevoEvento.aforo_no_socios);
+        nuevoEvento.voluntarios = parseFloat(nuevoEvento.voluntarios);
 
         console.log(nuevoEvento); // Muestra el objeto con los datos del formulario
 
         try {
+            //Falta la lógica para comparar las fechas
+            if (nuevoEvento.aforo_socios + nuevoEvento.aforo_no_socios > nuevoEvento.aforo) throw Error("Error en la petición");
+
             await axios.get("/sanctum/csrf-cookie");
             await axios.post("http://platita.test/api/evento", nuevoEvento, { withCredentials: true });
             alert("Producto creado correctamente");
