@@ -26,7 +26,7 @@ export default function CrearEvento() {
             //Falta la lógica para comparar las fechas
             if (nuevoEvento.aforo_socios + nuevoEvento.aforo_no_socios > nuevoEvento.aforo) throw Error("Error en la petición");
 
-            await axios.get("/sanctum/csrf-cookie");
+            await axios.get("http://platita.test/sanctum/csrf-cookie");
             await axios.post("http://platita.test/api/evento", nuevoEvento, { withCredentials: true });
             alert("Producto creado correctamente");
         } catch (error) {
