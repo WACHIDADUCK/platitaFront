@@ -19,12 +19,16 @@ export default function CrearEvento() {
         nuevoEvento.aforo_socios = parseFloat(nuevoEvento.aforo_socios);
         nuevoEvento.aforo_no_socios = parseFloat(nuevoEvento.aforo_no_socios);
         nuevoEvento.voluntarios = parseFloat(nuevoEvento.voluntarios);
+        nuevoEvento.fecha_inicio = new Date(nuevoEvento.fecha_inicio);
+        nuevoEvento.fecha_fin = new Date(nuevoEvento.fecha_fin);
 
         console.log(nuevoEvento); // Muestra el objeto con los datos del formulario
 
         try {
             //Falta la lógica para comparar las fechas
-            if (nuevoEvento.aforo_socios + nuevoEvento.aforo_no_socios > nuevoEvento.aforo) throw Error("Error en la petición");
+            if (nuevoEvento.aforo_socios + nuevoEvento.aforo_no_socios > nuevoEvento.aforo) return alert("Error en la cantidad de reservas");
+
+            if (nuevoEvento.fecha_inicio > nuevoEvento.fecha_fin) return alert("Error en las fechas");
 
             await axios.get("http://platita.test/sanctum/csrf-cookie");
             await axios.post("http://platita.test/api/evento", nuevoEvento, { withCredentials: true });
