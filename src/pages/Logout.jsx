@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from "axios";
 
 export default function Logout() {
     const [email, setEmail] = useState('');
@@ -6,16 +7,15 @@ export default function Logout() {
     const handleLogout = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://platita.test/api/logout', {
-                method: 'POST',
+            await axios.get("http://platita.test/sanctum/csrf-cookie");
+            const response = await axios.post('http://platita.test/api/logout', {
+                email, // Asegúrate de que `email` esté definido en el ámbito
+            }, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
                 },
-                body: JSON.stringify({
-                    email,
-                }),
-                credentials: 'include' // Asegúrate de incluir esto
+                withCredentials: true, // Incluir credenciales (cookies)
             });
 
             if (!response.ok) {
