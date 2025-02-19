@@ -19,8 +19,6 @@ export default function CrearEvento() {
         nuevoEvento.aforo_socios = parseFloat(nuevoEvento.aforo_socios);
         nuevoEvento.aforo_no_socios = parseFloat(nuevoEvento.aforo_no_socios);
         nuevoEvento.voluntarios = parseFloat(nuevoEvento.voluntarios);
-        nuevoEvento.fecha_inicio = new Date(nuevoEvento.fecha_inicio);
-        nuevoEvento.fecha_fin = new Date(nuevoEvento.fecha_fin);
 
         console.log(nuevoEvento); // Muestra el objeto con los datos del formulario
 
