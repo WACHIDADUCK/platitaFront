@@ -1,8 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios';
-
-axios.defaults.withCredentials = true;
-axios.defaults.withXSRFToken = true;
+import axios from '../hooks/axios';
 
 export default function Login() {
     const [email, setEmail] = useState('');
@@ -11,14 +8,15 @@ export default function Login() {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            await axios.get("http://platita.test/sanctum/csrf-cookie");
-            const response = await axios.post('http://platita.test/login', { email, password });
+            const token = await axios.get("/sanctum/csrf-cookie");
+            console.log(token)
+            const response = await axios.post('/login', { email, password });
             console.log(response);
 
-            const comprobar = await axios.get("http://platita.test/api/user");
+            const comprobar = await axios.get("/api/user");
             console.log(comprobar);
 
-            window.location.href = '/';
+            // window.location.href = '/';
         } catch (error) {
             console.error('Error al iniciar sesión:', error);
         }

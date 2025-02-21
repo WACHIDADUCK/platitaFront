@@ -1,11 +1,12 @@
 import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useFetch } from "../hooks/useFetch";
+import axios from "../hooks/axios";
 
 export default function Eventos() {
     let [searchParams, setSearchParams] = useSearchParams();
     //https://guillermo.informaticamajada.es
-    const { data, loading, error } = useFetch("http://platita.test/api/evento");
+    const { data, loading, error } = useFetch("https://platita.test/api/evento");
     const [eventos, setEventos] = useState([]);
 
     const handleChange = (e) => {
