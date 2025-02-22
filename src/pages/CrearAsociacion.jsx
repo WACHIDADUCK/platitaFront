@@ -5,7 +5,7 @@ export default function CrearAsociacion() {
         <div className="crearAsociacion flex-center">
             <div className="crearAsociacionForm">
                 {/* <form method="POST" action="https://guillermo.informaticamajada.es/api/asociacion"> */}
-                <form method="POST" action="http://platita.test/api/asociacion">
+                <form method="POST" action="https://guillermo.informaticamajada.es/api/asociacion">
                     <h3>Crear Asociación</h3>
                     <div>
                         <label htmlFor="">Nombre</label><input name="nombre" type="text" placeholder="" />

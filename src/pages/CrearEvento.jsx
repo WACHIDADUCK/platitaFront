@@ -1,10 +1,6 @@
-import { useFetch } from "../hooks/useFetch";
-import axios from "axios";
+import axios from "../hooks/axios";
 
 export default function CrearEvento() {
-    const { data, loading, error } = useFetch("http://platita.test/api/evento");
-    console.log(data);
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -28,9 +24,10 @@ export default function CrearEvento() {
 
             if (nuevoEvento.fecha_inicio > nuevoEvento.fecha_fin) return alert("Error en las fechas");
 
-            await axios.get("http://platita.test/sanctum/csrf-cookie");
-            await axios.post("http://platita.test/api/evento", nuevoEvento, { withCredentials: true });
+            await axios.get("/sanctum/csrf-cookie");
+            await axios.post("/api/evento", nuevoEvento);
             alert("Producto creado correctamente");
+            window.location.href = '/eventos';
         } catch (error) {
             console.error("Error creando el producto:", error);
         }
