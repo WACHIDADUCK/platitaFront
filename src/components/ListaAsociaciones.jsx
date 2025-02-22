@@ -5,7 +5,7 @@ import { useFetch } from "../hooks/useFetch";
 export default function ListaAsociaciones() {
     let [searchParams, setSearchParams] = useSearchParams();
     //https://guillermo.informaticamajada.es
-    const { data, loading, error } = useFetch("https://guillermo.informaticamajada.es/api/asociacion");
+    const { data, loading, error } = useFetch("https://platita.test/api/asociacion");
     const [asociaciones, setAsociaciones] = useState([]);
     const [field, setField] = useState("nombre");
 
@@ -34,23 +34,30 @@ export default function ListaAsociaciones() {
                 <button onClick={() => setField("descripcion")}>Descripción</button>
 
             </div>
-            <div>
+            <div className="contendorCardEventos">
                 {handleFilter().map(asociacion => {
                     return <div key={asociacion.id} className="asociacion-card">
 
                         <img src={asociacion.imagen} alt={asociacion.nombre} />
 
-                        <div>
-                            <div className="asociacion-header">
+                        <div className="infoContainer">
+                            <div className="asociacionHeader">
                                 <h3>{asociacion.nombre}</h3>
-                                <p className="asociacion-description">{asociacion.descripcion}</p>
+
+                                {/* {asociacion.eventos[0] &&
+                                    <div>
+                                        <h5>Prósimo Evento:</h5>
+                                    </div>} */}
+                                <div className="asociacionInfo">
+                                    <div>
+                                        <img src="./img/people.svg" alt="" /><p>{asociacion.users.length} socios </p>
+                                    </div>
+                                    <div>
+                                        <img src="./img/speech.svg" alt="" /><p>{asociacion.eventos.length} mensajes </p>
+                                    </div>
+                                </div>
                             </div>
-                            {/* <div className="asociacion-details">
-                                <p><strong>Contacto:</strong> {asociacion.contacto}</p>
-                                <p><strong>Email:</strong> {asociacion.email}</p>
-                                <p><strong>Creado en:</strong> {new Date(asociacion.created_at).toLocaleDateString()}</p>
-                                <p><strong>Actualizado en:</strong> {new Date(asociacion.updated_at).toLocaleDateString()}</p>
-                            </div> */}
+
                         </div>
                     </div>
 

@@ -4,8 +4,7 @@ import { useFetch } from "../hooks/useFetch";
 
 export default function Eventos() {
     let [searchParams, setSearchParams] = useSearchParams();
-    //https://guillermo.informaticamajada.es
-    const { data, loading, error } = useFetch("http://platita.test/api/evento");
+    const { data, loading, error } = useFetch("https://guillermo.informaticamajada.es/api/evento");
     const [eventos, setEventos] = useState([]);
 
     const handleChange = (e) => {

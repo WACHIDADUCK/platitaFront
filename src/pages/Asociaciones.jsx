@@ -11,11 +11,11 @@ export default function Asociaciones() {
                 </div>
 
                 <div className="asideDiv misAsociaciones">
-                    <h4>Asociacioes que siguo</h4>
+                    <h4>Sigo:</h4>
                 </div>
 
                 <div className="asideDiv misAsociaciones">
-                    <h4>Mis asociaciones</h4>
+                    <h4>Mis asociaciones:</h4>
                 </div>
             </div>
             <div className="col-2">
