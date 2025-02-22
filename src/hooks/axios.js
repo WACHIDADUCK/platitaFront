@@ -1,7 +1,7 @@
 import Axios from 'axios'
 
 const axios = Axios.create({
-    baseURL: "https://platita.test",
+    baseURL: "https://guillermo.informaticamajada.es",
     headers: {
         'X-Requested-With': 'XMLHttpRequest'
     },

@@ -15,7 +15,7 @@ export default function Login() {
             const comprobar = await axios.get("/api/user");
             console.log(comprobar);
 
-            window.location.href = '/';
+            // window.location.href = '/';
         } catch (error) {
             console.error('Error al iniciar sesión:', error);
         }
