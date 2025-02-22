@@ -6,13 +6,10 @@ export default function Logout() {
     const handleLogout = async (e) => {
         e.preventDefault();
         try {
-            const token = await axios.get("/sanctum/csrf-cookie");
-            console.log(token)
             const response = await axios.post('/logout');
-
-            // const data = await response.json();
             console.log(response);
-            // window.location.href = '/';
+
+            window.location.href = '/';
         } catch (error) {
             console.error('Error al cerrar sesión:', error);
         }

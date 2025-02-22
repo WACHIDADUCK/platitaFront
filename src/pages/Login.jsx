@@ -8,15 +8,14 @@ export default function Login() {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const token = await axios.get("/sanctum/csrf-cookie");
-            console.log(token)
+            await axios.get("/sanctum/csrf-cookie");
             const response = await axios.post('/login', { email, password });
             console.log(response);
 
             const comprobar = await axios.get("/api/user");
             console.log(comprobar);
 
-            // window.location.href = '/';
+            window.location.href = '/';
         } catch (error) {
             console.error('Error al iniciar sesión:', error);
         }
