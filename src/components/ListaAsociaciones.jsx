@@ -4,8 +4,7 @@ import { useFetch } from "../hooks/useFetch";
 
 export default function ListaAsociaciones() {
     let [searchParams, setSearchParams] = useSearchParams();
-    //https://guillermo.informaticamajada.es
-    const { data, loading, error } = useFetch("https://platita.test/api/asociacion");
+    const { data, loading, error } = useFetch("https://guillermo.informaticamajada.es/api/asociacion");
     const [asociaciones, setAsociaciones] = useState([]);
     const [field, setField] = useState("nombre");
 
