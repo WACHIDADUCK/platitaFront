@@ -31,7 +31,7 @@ export default function ListaEventos({ eventos }) {
                                     <p><strong>{evento.contador_aforo_socios + evento.contador_aforo_no_socios} Asistiran </strong></p><img src="./img/people.svg" alt="" className="icon" />
                                 </div>
                             </div>
-                            <Link className="link" to="/evento/1">Ver</Link>
+                            <Link className="link" to={`/evento/${evento.id}`}>Ver</Link>
                         </div>
                     </div>
                 );
