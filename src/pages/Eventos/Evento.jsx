@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { useFetch } from "../hooks/useFetch";
+import { useFetch } from "../../hooks/useFetch";
 import { Link, useParams } from "react-router-dom";
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
-import '../styles/eventos.css';
+import '../../styles/eventos.css';
 
 export default function Evento() {
     const { data, loading, error } = useFetch("https://guillermo.informaticamajada.es/api/evento");

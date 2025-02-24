@@ -1,4 +1,4 @@
-import axios from "../hooks/axios";
+import axios from "../../hooks/axios";
 
 export default function CrearEvento() {
     const handleSubmit = async (e) => {

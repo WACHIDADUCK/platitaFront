@@ -4,14 +4,14 @@ import { ContextProvider } from './providers/ContextProvider';
 import Layout from './layouts/Layout';
 import Home from './pages/Home';
 import Asociaciones from './pages/Asociaciones';
-import Eventos from './pages/Eventos';
+import Eventos from './pages/Eventos/Eventos';
 import CrearAsociacion from './pages/CrearAsociacion';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Asociacion from './pages/Asociacion';
 import Logout from './pages/Logout';
-import Evento from './pages/Evento';
-import CrearEvento from './pages/CrearEvento';
+import Evento from './pages/Eventos/Evento';
+import CrearEvento from './pages/Eventos/CrearEvento';
 
 function App() {
 
