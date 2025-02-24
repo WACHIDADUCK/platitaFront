@@ -1,6 +1,6 @@
 import axios from "../../hooks/axios";
 
-export default function CrearEvento() {
+const CambiarEvento = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -104,3 +104,5 @@ export default function CrearEvento() {
         </div>
     )
 }
+
+export default CambiarEvento;
