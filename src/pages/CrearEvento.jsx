@@ -4,7 +4,7 @@ export default function CrearEvento() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!window.confirm("¿Estás seguro de que quieres crear este producto?")) return;
+        if (!window.confirm("¿Estás seguro de que quieres crear este evento?")) return;
 
         // Crear un objeto FormData a partir del formulario
         const formData = new FormData(e.target);
@@ -19,17 +19,16 @@ export default function CrearEvento() {
         console.log(nuevoEvento); // Muestra el objeto con los datos del formulario
 
         try {
-            //Falta la lógica para comparar las fechas
             if (nuevoEvento.aforo_socios + nuevoEvento.aforo_no_socios > nuevoEvento.aforo) return alert("Error en la cantidad de reservas");
 
             if (nuevoEvento.fecha_inicio > nuevoEvento.fecha_fin) return alert("Error en las fechas");
 
             await axios.get("/sanctum/csrf-cookie");
             await axios.post("/api/evento", nuevoEvento);
-            alert("Producto creado correctamente");
+            alert("Evento creado correctamente");
             window.location.href = '/eventos';
         } catch (error) {
-            console.error("Error creando el producto:", error);
+            console.error("Error creando el evento:", error);
         }
     };
 
@@ -50,7 +49,6 @@ export default function CrearEvento() {
                 voluntarios
                 imagen
                 */}
-                {/* https://guillermo.informaticamajada.es/api/evento */}
                 <form method="POST" onSubmit={handleSubmit}>
                     <h3>Crear Evento</h3>
                     <div>

@@ -7,6 +7,7 @@ import Asociaciones from './pages/Asociaciones';
 import Eventos from './pages/Eventos';
 import CrearAsociacion from './pages/CrearAsociacion';
 import Login from './pages/Login';
+import Register from './pages/Register';
 import Asociacion from './pages/Asociacion';
 import Logout from './pages/Logout';
 import CrearEvento from './pages/CrearEvento';
@@ -32,6 +33,7 @@ function App() {
               <Route path='/crear_evento' element={<CrearEvento />} />
               <Route path='/eventos' element={<Eventos />} />
               <Route path='/login' element={<Login />} />
+              <Route path='/register' element={<Register />} />
               <Route path='/logout' element={<Logout />} />
             </Route>
           </Routes>
