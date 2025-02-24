@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
+import axios from "../hooks/axios";
 
 export default function Navbar() {
 
@@ -23,6 +23,11 @@ export default function Navbar() {
         }
     }
 
+    const comprobarSesion = async () => {
+        const comprobar = await axios.get("/api/user");
+        console.log(comprobar);
+        return comprobar
+    };
 
     return (
         <nav className="navbar">
@@ -45,7 +50,10 @@ export default function Navbar() {
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/asociaciones">Asociaciones</Link></li>
                 <li><Link to="/eventos">Eventos</Link></li>
+                {/* status: 200 */}
+
                 <li><Link to="/login">Login</Link></li>
+                <li><Link to="/register">Register</Link></li>
                 <li><Link to="/logout">Logout</Link></li>
             </ul>
         </nav>

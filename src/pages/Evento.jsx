@@ -6,7 +6,7 @@ import { es } from 'date-fns/locale';
 import '../styles/eventos.css';
 
 export default function Evento() {
-    const { data, loading, error } = useFetch("http://platita.test/api/evento");
+    const { data, loading, error } = useFetch("https://guillermo.informaticamajada.es/api/evento");
     const [eventos, setEventos] = useState([]);
 
     const idEvento = useParams().id;
@@ -16,7 +16,7 @@ export default function Evento() {
 
     // const idUser = 2
     // const asistireEventos = eventos.filter(evento => evento.users.find(user => user.id == idUser) && evento.estado == "abierto");
-    
+
     const comentarios = evento?.comentarios;
     const usuarios = evento?.users;
     const asociaciones = evento?.asociacions;
