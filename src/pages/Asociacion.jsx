@@ -7,9 +7,7 @@ import { format } from 'date-fns';
 
 
 export default function Asociaciones() {
-
-    //https://guillermo.informaticamajada.es
-    const { data, loading, error } = useFetch("http://platita.test/api/asociacion");
+    const { data, loading, error } = useFetch("https://guillermo.informaticamajada.es/api/asociacion");
     const [asociacion, setAsociacion] = useState([]);
 
     const id = useParams().id;
