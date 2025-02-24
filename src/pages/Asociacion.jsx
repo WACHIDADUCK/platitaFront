@@ -1,17 +1,25 @@
 
 import { useEffect, useState } from "react";
 import { useFetch } from "../hooks/useFetch";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import '../styles/asociaciones.css';
+import { format } from 'date-fns';
+
 
 export default function Asociaciones() {
     const { data, loading, error } = useFetch("https://guillermo.informaticamajada.es/api/asociacion");
     const [asociacion, setAsociacion] = useState([]);
 
+    const id = useParams().id;
     useEffect(() => {
-        if (data) setAsociacion(data.data[0]);
-        console.log(asociacion);
-
+        if (data) setAsociacion(data.data.find(asociacion => asociacion.id == id));
     }, [data]);
+
+    const numeroMiembros = asociacion?.users?.length;
+    const gestor = asociacion?.users?.find(user => user.id == asociacion.gestor_id);
+    const comentarios = asociacion?.comentarios;
+    const usuarios = asociacion?.users;
+
 
     if (loading || !asociacion) return (<h1>Buscando la dimensión adecuada...</h1>);
     if (error) return (<h1>La pistola de portales no funciona...</h1>);
@@ -19,24 +27,27 @@ export default function Asociaciones() {
     return (
         <div className="asociacionesContainer">
             <div className="col-1">
-                <div className="asideDiv justify-center">
-                    <Link className="link" to="/crear_asociacion"> Crear Asociacion</Link>
+                <div className="asideDiv divGestor">
+                    <h4 className="naranja">Gestor</h4>
+                    <p>{gestor?.name}</p>
                 </div>
 
                 <div className="asideDiv misAsociaciones">
-                    <h4>Sigo:</h4>
+                    <h4 className="naranja">{numeroMiembros} Miembros</h4>
+                    <div>
+
+
+                    </div>
                 </div>
 
-                <div className="asideDiv misAsociaciones">
-                    <h4>Mis asociaciones:</h4>
+                <div className="asideDiv ">
+                    <Link className="link" >Editar Grupo</Link>
                 </div>
             </div>
+
             <div className="col-2">
-
                 <div className="asociaciones-Card-Container">
-
                     <div className="contendorCardEventos">
-
                         <div key={asociacion.id} className="asociacion-card">
 
                             <img src={asociacion.imagen} alt={asociacion.nombre} />
@@ -45,27 +56,31 @@ export default function Asociaciones() {
                                 <div className="asociacionHeader">
                                     <h3>{asociacion.nombre}</h3>
                                     <p>{asociacion.descripcion}</p>
-
-                                    {asociacion &&
-                                        <div>
-                                            <h5>Prósimo Evento:</h5>
-                                        </div>}
                                     <div className="asociacionInfo">
-                                        <div>
-                                            <img src="./img/people.svg" alt="" /><p>{asociacion.users.length} socios </p>
-                                        </div>
-                                        <div>
-                                            <img src="./img/speech.svg" alt="" /><p>{asociacion.eventos.length} mensajes </p>
-                                        </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
 
                     </div>
                 </div>
 
+                <div className="sectionEvento">
+                    <div key={asociacion.id} className=" comentariosAsociacionCard">
+                        <h4 className="naranja">Comentarios</h4>
+                        <div className="comentarios">
+                            {comentarios?.map(comentario => (
+                                <div key={comentario.id} className="comentarioContainer">
+                                    <div className="nombreFecha">
+                                    <p className="nombre">{usuarios.find(user => user.id == comentario.user_id)?.name} </p>
+                                    <p className="fecha">{format(new Date(comentario?.fecha), "dd 'de' MMM, yyyy")}</p>
+                                    </div>
+                                    <p className="comentario">{comentario.comentario}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )

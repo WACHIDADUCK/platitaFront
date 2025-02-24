@@ -1,0 +1,184 @@
+.col-1 {
+    margin: 0px 7px 0px 0px;
+    width: 30%;
+}
+
+.col-2 {
+    margin: 20px;
+    width: 70%;
+}
+
+
+.asociacion-card {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+
+.asociacion-card .asociacion-header h3 {
+    justify-self: start;
+    margin-left: 0.1rem;
+}
+
+.asociacionesContainer .col-1 {
+    margin: 0px 7px 0px 0px;
+    width: 30%;
+}
+
+.asociacionesContainer .col-2 {
+    margin: 20px;
+    width: 70%;
+}
+
+@media (max-width: 768px) {
+    .asociacionesContainer {
+        flex-direction: column;
+    }
+
+    .asociacionesContainer .col-1,
+    .asociacionesContainer .col-2 {
+        width: 100%;
+        margin: 10px;
+    }
+}
+
+h2 {
+    padding: 0px;
+    margin: 0px;
+    margin-bottom: 5px;
+}
+
+.asideDivAsociaciones {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px 15px 7px 15px;
+    width: 100%;
+    padding: 2px 0px;
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    text-decoration: none;
+    color: black;
+}
+
+@media (max-width: 768px) {
+.asideDivAsociaciones {
+    flex-direction: column;
+}
+}
+
+
+.asideDivAsociaciones:last-child {
+    border-bottom: none;
+}
+
+.asideDivAsociaciones .img {
+    width: 150px;
+    margin-bottom: 20px;
+
+}
+
+.cards-header {
+    padding: 20px;
+}
+
+.icon {
+    margin: 0px 10px;
+}
+
+.infoContainer {
+    width: 50%;
+}
+
+.infoContainer div {
+    margin: 10px;
+}
+
+.misAsociaciones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.link {
+    margin: 10px;
+}
+
+.sectionEvento {
+    margin-top: 20px;
+}
+
+.sectionEvento {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.sectionEvento h4 {
+    margin: 7px;
+}
+
+.divGestor {
+    display: flex;
+    flex-direction: column;
+}
+
+.divGestor h4 {
+    margin: 3px;
+
+}
+
+.divGestor p {
+    margin-top: 3px;
+    margin-bottom: 20px;
+}
+
+.comentariosAsociacionCard {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+}
+
+.comentariosAsociacionCard h4 {
+    align-self: flex-start;
+    margin: 20px 0px 0px 20px;
+}
+
+.comentarioContainer {
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.comentarioContainer .nombre {
+    font-weight: bold;
+    text-align: left;
+    margin-left: 30px;
+}
+
+.comentario .comentario {
+    text-align: left;
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+
+.comentarioContainer .nombreFecha {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.comentarioContainer .fecha {
+    margin-right: 30px;
+}
+
+.filtros label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: coral;
+    font-weight: bold;
+}

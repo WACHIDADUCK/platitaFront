@@ -1,23 +1,20 @@
 import { createContext, useReducer, useContext } from "react";
 import { ContextReducer } from './ContextReducer';
 
-const QuestionsContext = createContext();
-export const useQuestions = () => useContext(QuestionsContext);
+const Context = createContext();
+export const useProvider = () => useContext(Context);
 
 export const ContextProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(ContextReducer, { questions: [], nextId: 1 });
+    const [state, dispatch] = useReducer(ContextReducer, {});
 
-    const addQuestion = nuevaPregunta => {
-        dispatch({ type: "AGREGAR_PREGUNTA", payload: nuevaPregunta });
-    };
 
-    const deleteQuestion = id => {
-        dispatch({ type: "BORRAR_PREGUNTA", payload: id });
+    const addCampo = (campo , array) => {
+        dispatch({ type: "AGREGAR_CAMPO", campo: campo, payload: array });
     };
 
     return (
-        <QuestionsContext.Provider value={{ questions: state.questions, addQuestion, deleteQuestion }}>
+        <Context.Provider value={{  state , addCampo }}>
             {children}
-        </QuestionsContext.Provider>
+        </Context.Provider>
     );
 };
