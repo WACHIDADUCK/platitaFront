@@ -1,0 +1,334 @@
+/* CONTENEDOR EVENTOS */
+
+.asociacionInfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.asociacionInfo p {
+    font-size: 12px;
+    font-weight: bold;
+    color: #aaa8a8;
+}
+
+
+.contendorCardEventos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+}
+
+.asociacionInfo img {
+    width: 10px;
+}
+
+.asociacionInfo div {
+    display: flex;
+    align-items: center;
+}
+
+
+
+h1 {
+    padding: 0px;
+    margin: 0px;
+    margin-bottom: 5px;
+}
+
+
+
+
+/* EVENTOS */
+
+
+
+.eventos-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.filtros input,
+.filtros select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    flex: 1;
+    min-width: 150px;
+}
+
+.eventos-lista {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.filtros label{
+    color: #FAA646;
+}
+
+.evento-card {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 100%;
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
+    text-decoration: none;
+    color: black;
+}
+
+.evento-card:visited {
+    color: black;
+}
+
+.evento-card h2 {
+    margin: 10px;
+}
+
+.evento-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.evento-imagen {
+    width: 100px;
+    margin: 10px;
+}
+
+.evento-info p {
+    font-size: 12px;
+    font-weight: bold;
+    color: #aaa8a8;
+}
+
+.evento-fecha-hora {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 768px) {
+    .evento-info {
+        flex-direction: column;
+    }
+}
+
+.evento-fecha-hora strong {
+    color: #3a3939;
+}
+
+.evento-info .link {
+    background-color: #287FB8;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 7px;
+    margin: 10px;
+}
+
+.icon {
+    width: 15px;
+}
+
+
+.asideDivEventos {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+}
+
+.asideDivEventos h4 {
+    margin: 0px;
+    margin-left: 10px;
+}
+
+.asideDivEventos h5 {
+    margin: 0px;
+    margin-top: 5px;
+}
+
+.evento-aforo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.evento-aforo p {
+    margin-right: 5px;
+}
+
+
+
+
+.asociacion-card {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.asociacion-card img {
+    width: 100px;
+    margin: 10px;
+}
+
+.asociacion-card .asociacion-header h3 {
+    justify-self: start;
+    margin-left: 0.1rem;
+}
+
+.asociacionesContainer .col-1 {
+    margin: 0px 7px 0px 0px;
+    width: 30%;
+}
+
+.asociacionesContainer .col-2 {
+    margin: 20px;
+    width: 70%;
+}
+
+
+/* Media query para formato móvil */
+@media (max-width: 768px) {
+    .asociacionesContainer {
+        flex-direction: column;
+        /* Cambia la dirección a columna */
+    }
+
+    .asociacionesContainer .col-1,
+    .asociacionesContainer .col-2 {
+        width: 100%;
+        /* Ocupa el 100% del ancho */
+        margin: 10px;
+        /* Añade un margen vertical */
+    }
+}
+
+
+
+
+
+.asideDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 15px 7px 15px;
+    width: 100%;
+    padding: 2px 0px;
+    background-color: #fff;
+}
+
+
+.asideDiv .link {
+    background-color: #287FB8;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 7px;
+}
+
+.asideDiv .flex-start {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.misAsociaciones {
+    display: flex;
+    align-items: start;
+    margin-top: 0px;
+    padding: 0px;
+}
+
+.misAsociaciones h4 {
+    margin: 10px 20px;
+    align-self: flex-start;
+}
+
+.eventoContainer .nombre {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+}
+
+.eventoContainer h4 {
+    margin: 10px;
+}
+
+
+.eventoContainerImagenNombre {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    width: 100%;
+}
+
+.eventoContainerImagenNombre img {
+    width: 100%;
+    margin: 0px;
+
+    background-color: black;
+    position: relative;
+    mask-image: linear-gradient(black 70%,
+            transparent);
+}
+
+
+.divImagen {
+    background-color: black;
+    position: relative;
+}
+
+
+.eventoContainerImagenNombre h3 {
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+}
+
+.contenedorEventoContenedor{
+    margin-top: 20px
+}
+
+.contenedorEventoContenedor .fecha{
+    padding: 0px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.contenedorEventoContenedor .comentario{
+    padding: 0px;
+    margin-bottom: 10px;
+    margin-top: 0px;
+}
+
+.centrado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

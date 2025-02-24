@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 
 export default function Logout() {
     const [email, setEmail] = useState('');
@@ -6,25 +7,17 @@ export default function Logout() {
     const handleLogout = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://platita.test/api/logout', {
-                method: 'POST',
+            const response = await axios.post('http://platita.test/api/logout', {
+                email,
+            }, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
                 },
-                body: JSON.stringify({
-                    email,
-                }),
-                credentials: 'include' // Asegúrate de incluir esto
+                withCredentials: true, // Asegúrate de incluir esto
             });
 
-            if (!response.ok) {
-                const errorText = await response.text();
-                throw new Error(`Error al cerrar sesión: ${errorText}`);
-            }
-
-            const data = await response.json();
-            console.log(data);
+            console.log(response.data);
         } catch (error) {
             console.error('Error al cerrar sesión:', error);
         }
