@@ -4,14 +4,14 @@ import Footer from "../components/Footer";
 
 
 
-import { useEffect} from 'react';
+import { useEffect } from 'react';
 import { useFetch } from '../hooks/useFetch';
 import { useProvider } from '../providers/ContextProvider';
 
 export default function Layout({ children }) {
 
-    const { data: asociaciones, loading, error } = useFetch("http://platita.test/api/asociacion");
-    const { data: eventos, loading: loadingEventos, error: errorEventos } = useFetch("http://platita.test/api/evento");
+    const { data: asociaciones, loading, error } = useFetch("https://guillermo.informaticamajada.es/api/asociacion");
+    const { data: eventos, loading: loadingEventos, error: errorEventos } = useFetch("https://guillermo.informaticamajada.es/api/evento");
 
     const { addCampo } = useProvider();
 
