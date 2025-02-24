@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "../hooks/axios";
+import { useLocation } from 'react-router-dom';
 
 export default function Navbar() {
-
+    const [login, setLogin] = useState(false);
     const [busqueda, setBusqueda] = useState("");
     const [tipoBuesqueda, setTipoBusqueda] = useState("asociacion");
-
+    const location = useLocation();
 
     function handleBusqueda() {
         console.log(busqueda, tipoBuesqueda);
@@ -23,11 +24,23 @@ export default function Navbar() {
         }
     }
 
-    const comprobarSesion = async () => {
-        const comprobar = await axios.get("/api/user");
-        console.log(comprobar);
-        return comprobar
-    };
+    useEffect(() => {
+        const comprobarUsuario = async () => {
+            try {
+                const respuesta = await axios.get("/api/user");
+
+                if (respuesta.status === 200) {
+                    setLogin(true); // Si el status es 200, el usuario está logeado
+                } else {
+                    setLogin(false); // Si no, el usuario no está logeado
+                }
+            } catch (error) {
+                console.error("Error al comprobar la sesión:", error);
+                setLogin(false); // Si hay un error, asumimos que el usuario no está logeado
+            }
+        };
+        comprobarUsuario();
+    }, [location]);
 
     return (
         <nav className="navbar">
@@ -51,10 +64,14 @@ export default function Navbar() {
                 <li><Link to="/asociaciones">Asociaciones</Link></li>
                 <li><Link to="/eventos">Eventos</Link></li>
                 {/* status: 200 */}
-
-                <li><Link to="/login">Login</Link></li>
-                <li><Link to="/register">Register</Link></li>
-                <li><Link to="/logout">Logout</Link></li>
+                {login ? (
+                    <li><Link to="/logout">Logout</Link></li>
+                ) : (
+                    <>
+                        <li><Link to="/login">Login</Link></li>
+                        <li><Link to="/register">Register</Link></li>
+                    </>
+                )}
             </ul>
         </nav>
     )
