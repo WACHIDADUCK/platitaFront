@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 import '../../styles/eventos.css';
+import { useProvider } from "../../providers/ContextProvider";
 
 export default function Evento() {
     const { data, loading, error } = useFetch("https://guillermo.informaticamajada.es/api/evento");
