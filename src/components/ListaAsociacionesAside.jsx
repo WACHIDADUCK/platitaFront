@@ -5,7 +5,7 @@ export default function ListaAsociacionesAside({ asociaciones ,cabecero }) {
     return (
         <>
             <h4 className="naranja">{cabecero}</h4>
-            {asociaciones.map(asociacion => (
+            {asociaciones?.map(asociacion => (
                 <Link to={`/asociacion/${asociacion.id}`} key={asociacion.id} className="misAsociacionesContainer">
                     <div>
                         <div>

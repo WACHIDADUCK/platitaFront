@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import axios from '../hooks/axios';
+import { useProvider } from '../providers/ContextProvider';
+
 
 export default function Login() {
+    const { state } = useProvider();
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 

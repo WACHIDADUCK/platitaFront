@@ -1,28 +1,30 @@
-
 import { useEffect, useState } from "react";
-import { useFetch } from "../hooks/useFetch";
 import { Link, useParams } from "react-router-dom";
 import '../styles/asociaciones.css';
 import { format } from 'date-fns';
-
+import { useProvider } from '../providers/ContextProvider';
 
 export default function Asociaciones() {
-    const { data, loading, error } = useFetch("https://guillermo.informaticamajada.es/api/asociacion");
+    const { state } = useProvider();
     const [asociacion, setAsociacion] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+    const [newComment, setNewComment] = useState("");
 
     const id = useParams().id;
     useEffect(() => {
-        if (data) setAsociacion(data.data.find(asociacion => asociacion.id == id));
-    }, [data]);
+        if (state?.asociaciones) setAsociacion(state.asociaciones.find(asociacion => asociacion.id == id));
+    }, [state]);
 
     const numeroMiembros = asociacion?.users?.length;
     const gestor = asociacion?.users?.find(user => user.id == asociacion.gestor_id);
     const comentarios = asociacion?.comentarios;
     const usuarios = asociacion?.users;
 
-
-    if (loading || !asociacion) return (<h1>Buscando la dimensión adecuada...</h1>);
-    if (error) return (<h1>La pistola de portales no funciona...</h1>);
+    const handleAddComment = () => {
+        
+        console.log("Nuevo comentario:", newComment);
+        setShowModal(false);
+    };
 
     return (
         <div className="asociacionesContainer">
@@ -35,13 +37,11 @@ export default function Asociaciones() {
                 <div className="asideDiv misAsociaciones">
                     <h4 className="naranja">{numeroMiembros} Miembros</h4>
                     <div>
-
-
                     </div>
                 </div>
 
                 <div className="asideDiv ">
-                    <Link className="link" >Editar Grupo</Link>
+                    <Link to={`/asociacion/editar/${asociacion.id}`} className="link" >Editar Asociacion</Link>
                 </div>
             </div>
 
@@ -49,9 +49,7 @@ export default function Asociaciones() {
                 <div className="asociaciones-Card-Container">
                     <div className="contendorCardEventos">
                         <div key={asociacion.id} className="asociacion-card">
-
                             <img src={asociacion.imagen} alt={asociacion.nombre} />
-
                             <div className="infoContainer">
                                 <div className="asociacionHeader">
                                     <h3>{asociacion.nombre}</h3>
@@ -61,19 +59,22 @@ export default function Asociaciones() {
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
 
                 <div className="sectionEvento">
                     <div key={asociacion.id} className=" comentariosAsociacionCard">
-                        <h4 className="naranja">Comentarios</h4>
+                        <div className="cabecera">
+                            <h4 className="naranja">Comentarios</h4>
+                            <button className="boton" onClick={() => setShowModal(true)}>Añadir comentario</button>
+                        </div>
+
                         <div className="comentarios">
                             {comentarios?.map(comentario => (
                                 <div key={comentario.id} className="comentarioContainer">
                                     <div className="nombreFecha">
-                                    <p className="nombre">{usuarios.find(user => user.id == comentario.user_id)?.name} </p>
-                                    <p className="fecha">{format(new Date(comentario?.fecha), "dd 'de' MMM, yyyy")}</p>
+                                        <p className="nombre">{usuarios.find(user => user.id == comentario.user_id)?.name} </p>
+                                        <p className="fecha">{format(new Date(comentario?.fecha), "dd 'de' MMM, yyyy")}</p>
                                     </div>
                                     <p className="comentario">{comentario.comentario}</p>
                                 </div>
@@ -82,6 +83,21 @@ export default function Asociaciones() {
                     </div>
                 </div>
             </div>
+
+            {showModal && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <span className="close" onClick={() => setShowModal(false)}>&times;</span>
+                        <h2>Añadir Comentario</h2>
+                        <textarea
+                            value={newComment}
+                            onChange={(e) => setNewComment(e.target.value)}
+                            placeholder="Escribe tu comentario aquí..."
+                        />
+                        <button className="boton" onClick={handleAddComment}>Enviar</button>
+                    </div>
+                </div>
+            )}
         </div>
-    )
+    );
 }
