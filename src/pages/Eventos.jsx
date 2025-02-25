@@ -1,89 +1,160 @@
 import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useFetch } from "../hooks/useFetch";
+import '../styles/eventos.css';
+import { useProvider } from '../providers/ContextProvider';
+import ListaEventos from '../components/ListaEventos';
+import ListaEventosAside from "../components/ListaEventosAside";
 
 export default function Eventos() {
-    let [searchParams, setSearchParams] = useSearchParams();
-    const { data, loading, error } = useFetch("https://guillermo.informaticamajada.es/api/evento");
+    const { state } = useProvider();
+    const [searchParams, setSearchParams] = useSearchParams();
     const [eventos, setEventos] = useState([]);
 
-    const handleChange = (e) => {
-        searchParams.set(e.target.name, e.target.value)
-        setSearchParams(searchParams);
-    };
-
-    const handleFilter = () => {
-        return eventos.filter(item => {
-            const nombreFilter = searchParams.get("nombre");
-            const descripcionFilter = searchParams.get("descripcion");
-            const tipoFilter = searchParams.get("tipo");
-            const fechaInicioFilter = searchParams.get("fecha_inicio");
-            const fechaFinFilter = searchParams.get("fecha_fin");
-            const aforoFilter = searchParams.get("aforo");
-            const accesibilidadFilter = searchParams.get("accesibilidad");
-            const estadoFilter = searchParams.get("estado");
-
-            // Aplicar todos los filtros a la vez
-            return (
-                (!nombreFilter || item.nombre.includes(nombreFilter)) &&
-                (!descripcionFilter || item.descripcion.includes(descripcionFilter)) &&
-                (!tipoFilter || item.tipo == tipoFilter) &&
-                (!fechaInicioFilter || item.fecha_inicio == fechaInicioFilter) &&
-                (!fechaFinFilter || item.fecha_fin == fechaFinFilter) &&
-                (!aforoFilter || item.aforo >= aforoFilter) &&
-                (!accesibilidadFilter || item.accesibilidad == accesibilidadFilter) &&
-                (!estadoFilter || item.estado == estadoFilter)
-            );
-        });
-    }
+    const [fechaInicio, setFechaInicio] = useState("");
+    const [fechaFin, setFechaFin] = useState("");
+    const [buscarNombre, setBuscarNombre] = useState("");
 
     useEffect(() => {
-        if (data) setEventos(data.data);
-    }, [data]);
+        const busquedaParams = searchParams.get("busqueda");
+        if (busquedaParams) {
+            setBuscarNombre(busquedaParams);
+        }
+    }, [searchParams]);
 
-    if (loading || !eventos) return (<h1>Buscando la dimensión adecuada...</h1>);
-    if (error) return (<h1>La pistola de portales no funciona...</h1>);
-    console.log(handleFilter())
+    useEffect(() => {
+        if (state.eventos) setEventos(state.eventos);
+    }, [state]);
+
+    useEffect(() => {
+        handleChange();
+    }, [fechaInicio, fechaFin, buscarNombre, state.eventos]);
+
+    const handleChange = () => {
+        if (!state.eventos) return;
+
+        let filteredEventos = state.eventos;
+
+        if (buscarNombre.toLowerCase() !== "") {
+            filteredEventos = filteredEventos.filter(evento => evento.nombre.toLowerCase().includes(buscarNombre.toLowerCase()));
+        }
+
+        if (fechaInicio || fechaFin) {
+            filteredEventos = filteredEventos.filter(evento => {
+                const eventoFechaInicio = new Date(evento.fecha_inicio);
+                const eventoFechaFin = new Date(evento.fecha_fin);
+                const filtroFechaInicio = fechaInicio ? new Date(fechaInicio) : null;
+                const filtroFechaFin = fechaFin ? new Date(fechaFin) : null;
+
+                if (filtroFechaInicio && filtroFechaFin) {
+                    return eventoFechaInicio >= filtroFechaInicio && eventoFechaFin <= filtroFechaFin;
+                } else if (filtroFechaInicio) {
+                    return eventoFechaInicio >= filtroFechaInicio;
+                } else if (filtroFechaFin) {
+                    return eventoFechaFin <= filtroFechaFin;
+                }
+                return true;
+            });
+        }
+
+        setEventos(filteredEventos);
+    };
+
+    // evento.aforo_socios - evento.contador_aforo_socios
+    // evento.aforo_socios - evento.contador_aforo_socios
+    const ordenar = (e) => {
+        let sortedEventos = [...eventos]; // Crear una copia de los eventos actuales
+
+        switch (e.target.value) {
+            case "fechasCercanas":
+                sortedEventos.sort((a, b) => new Date(b.fecha_inicio) - new Date(a.fecha_inicio));
+                break;
+            case "fechasLejanas":
+                sortedEventos.sort((a, b) => new Date(a.fecha_inicio) - new Date(b.fecha_inicio));
+                break;
+            case "masPlazasSocios":
+                sortedEventos.sort((a, b) => (b.aforo_socios - b.contador_aforo_socios) - (a.aforo_socios - a.contador_aforo_socios));
+                break;
+            case "menosPLazasSocios":
+                sortedEventos.sort((a, b) => (a.aforo_socios - a.contador_aforo_socios) - (b.aforo_socios - b.contador_aforo_socios));
+                break;
+            case "masPlazasNoSocios":
+                sortedEventos.sort((a, b) => ((b.aforo_no_socios - b.contador_aforo_no_socios) - (a.aforo_no_socios - a.contador_aforo_no_socios)));
+                break;
+            case "menosPlazasNoSocios":
+                sortedEventos.sort((a, b) => (a.aforo_no_socios - a.contador_aforo_no_socios) - (b.aforo_no_socios - b.contador_aforo_no_socios));
+                break;
+            default:
+                break;
+        }
+
+        setEventos(sortedEventos);
+    };
+
+
+    const idUser = 2;
+    const misEventos = state.eventos ? state.eventos.filter(evento => evento.asociacions.find(asociacion => asociacion.gestor_id == idUser) && evento.estado == "abierto") : [];
+    const asistireEventos = state.eventos ? state.eventos.filter(evento => evento.users.find(user => user.id == idUser) && evento.estado == "abierto") : [];
 
     return (
-        <div>
-            <h1>Eventos</h1>
-            <input type="text" name="nombre" onChange={handleChange} alt='Buscador' value={searchParams.get("nombre") || ""} />
+        <div className="asociacionesContainer">
+            <div className="col-1">
+                <ListaEventosAside eventos={misEventos} cabecero={"Mis eventos"} />
+                <ListaEventosAside eventos={asistireEventos} cabecero={"Eventos que asistiré"} />
+            </div>
+            <div className="col-2">
+                <div className="eventos-container">
 
-            <input type="text" name="descripcion" onChange={handleChange} alt='Buscador' value={searchParams.get("descripcion") || ""} />
-
-            <select name="tipo" onChange={handleChange} alt='Buscador' value={searchParams.get("tipo") || ""}>
-                <option value=""></option>
-                <option value="evento">evento</option>
-                <option value="actividad">actividad</option>
-            </select>
-
-            <input type="datetime-local" name="fecha_inicio" onChange={handleChange} alt='Buscador' value={searchParams.get("fecha_inicio") || ""} />
-            <input type="datetime-local" name="fecha_fin" onChange={handleChange} alt='Buscador' value={searchParams.get("fecha_fin") || ""} />
-
-            <input type="number" name="aforo" onChange={handleChange} alt='Buscador' value={searchParams.get("aforo") || ""} />
-
-            <select name="accesibilidad" onChange={handleChange} alt='Buscador' value={searchParams.get("accesibilidad") || ""}>
-                <option value=""></option>
-                <option value="socios">socios</option>
-                <option value="publico">publico</option>
-                <option value="privado">privado</option>
-                <option value="mixto">mixto</option>
-            </select>
-
-            <select name="estado" onChange={handleChange} alt='Buscador' value={searchParams.get("estado") || ""}>
-                <option value=""></option>
-                <option value="abierto">abierto</option>
-                <option value="cerrado">cerrado</option>
-            </select>
-            
-            <div>
-                {handleFilter().map(evento => {
-                    return <div key={evento.id}>
-                        <h2>Nombre:{evento.nombre} | Descripcion:{evento.descripcion}</h2>
+                    <h1 className="naranja">Eventos</h1>
+                    <div className="filtros">
+                        <input
+                            type="text"
+                            name="nombre"
+                            onChange={(e) => setBuscarNombre(e.target.value)}
+                            placeholder="Buscar Evento"
+                            value={buscarNombre}
+                        />
                     </div>
-                })}
+
+                    <div className="filtros">
+                        <div>
+                            <label htmlFor="fechaInicio">Fecha Inicio</label>
+                            <input
+                                type="date"
+                                name="fechaInicio"
+                                onChange={(e) => setFechaInicio(e.target.value)}
+                            />
+                        </div>
+
+                        <div>
+                            <label htmlFor="fechaFin">Fecha Fin</label>
+                            <input
+                                type="date"
+                                name="fechaFin"
+                                onChange={(e) => setFechaFin(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="ordenar">Ordenar por</label>
+                            <select
+                                name="ordenar"
+                                onChange={(e) => ordenar(e)}
+                            >
+                                <option value="fechasCercanas">Fechas Cercanas</option>
+                                <option value="fechasLejanas">Fechas Lejanas</option>
+                                <option value="masPlazasSocios"> + Plazas Disponibles socios</option>
+                                <option value="menosPLazasSocios"> - Plazas Disponibles socios</option>
+                                <option value="masPlazasNoSocios"> + Plazas Disponibles No Socios</option>
+                                <option value="menosPlazasNoSocios"> - Plazas Disponibles No Socios</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div className="eventos-lista">
+                        <ListaEventos eventos={eventos} />
+                    </div>
+                </div>
             </div>
         </div>
-    )
+    );
 }

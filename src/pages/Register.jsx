@@ -1,20 +1,17 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import axios from '../hooks/axios';
-import { useProvider } from '../providers/ContextProvider';
-
 
 export default function Login() {
-    const { state } = useProvider();
-
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [passwordConfirmation, setPasswordConfirmation] = useState('');
 
-    const handleLogin = async (e) => {
+    const handleRegister = async (e) => {
         e.preventDefault();
         try {
             await axios.get("/sanctum/csrf-cookie");
-            const response = await axios.post('/login', { email, password });
+            const response = await axios.post('/register', { name, email, password, passwordConfirmation });
             console.log(response);
 
             const comprobar = await axios.get("/api/user");
@@ -29,7 +26,17 @@ export default function Login() {
     return (
         <div>
             <h1>Login</h1>
-            <form onSubmit={handleLogin}>
+            <form onSubmit={handleRegister}>
+                <div>
+                    <label htmlFor="name">Name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
+                </div>
                 <div>
                     <label htmlFor="email">Email</label>
                     <input
@@ -50,9 +57,18 @@ export default function Login() {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-                <button type="submit">Login</button>
+                <div>
+                    <label htmlFor="passwordConfirmation">Confirm Password</label>
+                    <input
+                        type="password"
+                        id="passwordConfirmation"
+                        name="passwordConfirmation"
+                        value={passwordConfirmation}
+                        onChange={(e) => setPasswordConfirmation(e.target.value)}
+                    />
+                </div>
+                <button type="submit">Register</button>
             </form>
-            <Link to="/logout">Logout</Link>
         </div>
     );
 }
