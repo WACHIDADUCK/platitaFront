@@ -1,4 +1,4 @@
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import '../../styles/eventos.css';
 import { useProvider } from '../../providers/ContextProvider';
@@ -98,8 +98,17 @@ export default function Eventos() {
     return (
         <div className="asociacionesContainer">
             <div className="col-1">
-                <ListaEventosAside eventos={misEventos} cabecero={"Mis eventos"} />
-                <ListaEventosAside eventos={asistireEventos} cabecero={"Eventos que asistiré"} />
+                <div className="asideDiv justify-center divBotonCrearAsociacion boton">
+                    <Link className="link" to="/crear_evento">Crear Evento</Link>
+                </div>
+
+                <div className="asideDiv misAsociaciones">
+                    <ListaEventosAside eventos={misEventos} cabecero={"Mis eventos"} />
+                </div>
+
+                <div className="asideDiv misAsociaciones">
+                    <ListaEventosAside eventos={asistireEventos} cabecero={"Eventos que asistiré"} />
+                </div>
             </div>
             <div className="col-2">
                 <div className="eventos-container">
