@@ -12,6 +12,7 @@ import Asociacion from './pages/Asociacion';
 import Logout from './pages/Logout';
 import Evento from './pages/Eventos/Evento';
 import CrearEvento from './pages/Eventos/CrearEvento';
+import CambiarEvento from './pages/Eventos/CambiarEvento';
 import BorrarEvento from './pages/Eventos/BorrarEvento';
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
               <Route path='/asociaciones' element={<Asociaciones />} />
               <Route path='/asociacion/:id' element={<Asociacion />} />
               <Route path='/crear_evento' element={<CrearEvento />} />
+              <Route path='/cambiar_evento/:id' element={<CambiarEvento />} />
               <Route path='/borrar_evento/:id' element={<BorrarEvento />} />
               <Route path='/eventos' element={<Eventos />} />
               <Route path='/evento/:id' element={<Evento />} />
