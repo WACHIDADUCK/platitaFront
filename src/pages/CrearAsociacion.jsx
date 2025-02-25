@@ -6,6 +6,8 @@ import { useProvider } from '../providers/ContextProvider';
 export default function CrearAsociacion() {
 
     const { state } = useProvider();
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    const idUser = user ? user.id : null;
     console.log(state.url);
 
     const handleSubmit = async (e) => {

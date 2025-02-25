@@ -13,6 +13,8 @@ export default function Asociaciones() {
     const [searchParams, setSearchParams] = useSearchParams();
     const [asociaciones, setAsociaciones] = useState([]);
     const [buscarNombre, setBuscarNombre] = useState("");
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    const idUser = user ? user.id : null;
 
 
 

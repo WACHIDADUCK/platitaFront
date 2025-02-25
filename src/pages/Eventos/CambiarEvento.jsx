@@ -7,6 +7,8 @@ const CambiarEvento = () => {
     const { state } = useProvider();
     const params = useParams();
     const [eventoAntiguo, setEventoAntiguo] = useState(null);
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    const idUser = user ? user.id : null;
 
     useEffect(() => {
         if (state.eventos) {

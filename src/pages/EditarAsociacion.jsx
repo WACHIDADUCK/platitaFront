@@ -10,6 +10,8 @@ export default function CrearAsociacion() {
     const esGestor = useProvider().state.esGestor;
 
     const { state } = useProvider();
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    const idUser = user ? user.id : null;
 
     console.log(state.url);
 
