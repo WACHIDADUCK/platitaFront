@@ -11,6 +11,7 @@ export default function Asociaciones() {
 
     //https://guillermo.informaticamajada.es
     const { state } = useProvider();
+
     const [asociacion, setAsociacion] = useState([]);
 
     const id = useParams().id;
