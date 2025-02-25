@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import axios from '../hooks/axios';
 import { useProvider } from '../providers/ContextProvider';
 
@@ -52,7 +51,6 @@ export default function Login() {
                 </div>
                 <button type="submit">Login</button>
             </form>
-            <Link to="/logout">Logout</Link>
         </div>
     );
 }

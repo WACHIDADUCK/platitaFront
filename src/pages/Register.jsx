@@ -11,7 +11,7 @@ export default function Login() {
         e.preventDefault();
         try {
             await axios.get("/sanctum/csrf-cookie");
-            const response = await axios.post('/register', { name, email, password, passwordConfirmation });
+            const response = await axios.post('/register', { name, email, password, password_confirmation: passwordConfirmation });
             console.log(response);
 
             const comprobar = await axios.get("/api/user");
@@ -58,11 +58,11 @@ export default function Login() {
                     />
                 </div>
                 <div>
-                    <label htmlFor="passwordConfirmation">Confirm Password</label>
+                    <label htmlFor="password_confirmation">Confirm Password</label>
                     <input
                         type="password"
-                        id="passwordConfirmation"
-                        name="passwordConfirmation"
+                        id="password_confirmation"
+                        name="password_confirmation"
                         value={passwordConfirmation}
                         onChange={(e) => setPasswordConfirmation(e.target.value)}
                     />
