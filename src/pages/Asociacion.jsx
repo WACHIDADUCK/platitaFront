@@ -29,9 +29,11 @@ export default function Asociaciones() {
             const response = await axios.post(`/api/comentario`, {
                 user_id: user,// Asegúrate de que el usuario esté autenticado y su ID esté disponible en el estado
                 comentario: newComment,
-                comentarioable_type: 'App\Models\Asociacion',
+                valoracion: 3,
+                comentarioable_type: "App\\Models\\Asociacion",
                 comentarioable_id: asociacion.id
             });
+
             console.log("Nuevo comentario:", response.data);
             setShowModal(false);
             // Actualiza los comentarios localmente para reflejar el nuevo comentario
