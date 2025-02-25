@@ -4,28 +4,24 @@ import { Link, useParams } from "react-router-dom";
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 import '../styles/eventos.css';
+import { useProvider } from '../providers/ContextProvider';
+
 
 export default function Evento() {
-    const { data, loading, error } = useFetch("http://platita.test/api/evento");
     const [eventos, setEventos] = useState([]);
+    const { state } = useProvider();
 
     const idEvento = useParams().id;
     const evento = eventos.find(evento => evento.id == idEvento);
 
 
-
-    // const idUser = 2
-    // const asistireEventos = eventos.filter(evento => evento.users.find(user => user.id == idUser) && evento.estado == "abierto");
-    
     const comentarios = evento?.comentarios;
     const usuarios = evento?.users;
     const asociaciones = evento?.asociacions;
     useEffect(() => {
-        if (data) setEventos(data.data);
-    }, [data]);
+        if (state?.eventos) setEventos(state.eventos);
+    }, [state.eventos]);
 
-    if (loading || !eventos) return (<h1>Buscando eventos...</h1>);
-    if (error) return (<h1>No se encontraron los eventos...</h1>);
 
     return (
         <div className="asociacionesContainer">

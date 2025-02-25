@@ -45,8 +45,8 @@ export default function Asociaciones() {
     };
 
     const idUser = 2;
-    const misAsociaciones = state.asociaciones.filter(asociacion => asociacion.gestor_id == idUser);
-    const asociacionesQueSiguo = state.asociaciones.filter(asociacion => asociacion.users.some(user => user.id == idUser));
+    const misAsociaciones = state?.asociaciones?.filter(asociacion => asociacion.gestor_id == idUser);
+    const asociacionesQueSiguo = state?.asociaciones?.filter(asociacion => asociacion.users.some(user => user.id == idUser));
 
     return (
         <div className="asociacionesContainer">

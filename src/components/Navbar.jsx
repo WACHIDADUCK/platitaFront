@@ -9,7 +9,6 @@ export default function Navbar() {
 
 
     function handleBusqueda() {
-        console.log(busqueda, tipoBuesqueda);
         switch (tipoBuesqueda) {
             case "asociacion":
                 window.location.href = `/asociaciones?busqueda=${busqueda}`;

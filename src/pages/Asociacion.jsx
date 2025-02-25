@@ -4,27 +4,25 @@ import { useFetch } from "../hooks/useFetch";
 import { Link, useParams } from "react-router-dom";
 import '../styles/asociaciones.css';
 import { format } from 'date-fns';
+import { useProvider } from '../providers/ContextProvider';
 
 
 export default function Asociaciones() {
 
     //https://guillermo.informaticamajada.es
-    const { data, loading, error } = useFetch("http://platita.test/api/asociacion");
+    const { state } = useProvider();
     const [asociacion, setAsociacion] = useState([]);
 
     const id = useParams().id;
     useEffect(() => {
-        if (data) setAsociacion(data.data.find(asociacion => asociacion.id == id));
-    }, [data]);
+        if (state?.asociaciones) setAsociacion(state.asociaciones.find(asociacion => asociacion.id == id));
+    }, [state]);
 
     const numeroMiembros = asociacion?.users?.length;
     const gestor = asociacion?.users?.find(user => user.id == asociacion.gestor_id);
     const comentarios = asociacion?.comentarios;
     const usuarios = asociacion?.users;
 
-
-    if (loading || !asociacion) return (<h1>Buscando la dimensión adecuada...</h1>);
-    if (error) return (<h1>La pistola de portales no funciona...</h1>);
 
     return (
         <div className="asociacionesContainer">
