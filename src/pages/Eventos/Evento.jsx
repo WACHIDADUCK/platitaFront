@@ -7,7 +7,6 @@ import '../../styles/eventos.css';
 import { useProvider } from "../../providers/ContextProvider";
 
 export default function Evento() {
-    const { data, loading, error } = useFetch("https://guillermo.informaticamajada.es/api/evento");
     const [eventos, setEventos] = useState([]);
     const { state } = useProvider();
     const [showModal, setShowModal] = useState(false);
