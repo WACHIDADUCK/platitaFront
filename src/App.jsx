@@ -30,7 +30,6 @@ function App() {
               <Route path='/asociaciones' element={<Asociaciones />} />
               <Route path='/asociacion/:id' element={<Asociacion />} />
               <Route path='/asociacion/editar/:id' element={<EditarAsociacion />} />
-              <Route path='/asociaciones/:id' element={<Asociacion />} />
               <Route path='/crear_evento' element={<CrearEvento />} />
               <Route path='/eventos' element={<Eventos />} />
               <Route path='/evento/:id' element={<Evento />} />

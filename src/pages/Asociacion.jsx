@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import '../styles/asociaciones.css';
 import { format } from 'date-fns';
 import { useProvider } from '../providers/ContextProvider';
+import axios from 'axios';
 
 export default function Asociaciones() {
     const { state } = useProvider();
@@ -14,16 +15,29 @@ export default function Asociaciones() {
     useEffect(() => {
         if (state?.asociaciones) setAsociacion(state.asociaciones.find(asociacion => asociacion.id == id));
     }, [state]);
-
+ 
     const numeroMiembros = asociacion?.users?.length;
     const gestor = asociacion?.users?.find(user => user.id == asociacion.gestor_id);
     const comentarios = asociacion?.comentarios;
     const usuarios = asociacion?.users;
 
-    const handleAddComment = () => {
-        
-        console.log("Nuevo comentario:", newComment);
-        setShowModal(false);
+    const handleAddComment = async () => {
+        try {
+            const response = await axios.post(`${state.url.data}/api/comentarios`, {
+                comentario: newComment,
+                asociacion_id: id,
+                user_id: state.user.id // Asegúrate de que el usuario esté autenticado y su ID esté disponible en el estado
+            });
+            console.log("Nuevo comentario:", response.data);
+            setShowModal(false);
+            // Actualiza los comentarios localmente para reflejar el nuevo comentario
+            setAsociacion(prevAsociacion => ({
+                ...prevAsociacion,
+                comentarios: [...prevAsociacion.comentarios, response.data]
+            }));
+        } catch (error) {
+            console.error("Error añadiendo el comentario:", error);
+        }
     };
 
     return (
