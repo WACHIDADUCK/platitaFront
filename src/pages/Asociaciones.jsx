@@ -8,6 +8,7 @@ import ListaAsociacionesAside from "../components/ListaAsociacionesAside";
 
 export default function Asociaciones() {
     const { state } = useProvider();
+
     const [searchParams, setSearchParams] = useSearchParams();
     const [asociaciones, setAsociaciones] = useState([]);
     const [buscarNombre, setBuscarNombre] = useState("");

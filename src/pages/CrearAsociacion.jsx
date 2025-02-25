@@ -1,6 +1,13 @@
 import axios from "../hooks/axios";
+import { Link } from "react-router-dom";
+import { useProvider } from '../providers/ContextProvider';
+
 
 export default function CrearAsociacion() {
+
+    const { state } = useProvider();
+    console.log(state.url);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -13,11 +20,12 @@ export default function CrearAsociacion() {
         const nuevaAsociacion = Object.fromEntries(formData.entries());
         nuevaAsociacion.contacto = parseFloat(nuevaAsociacion.contacto);
 
-        console.log(nuevaAsociacion); // Muestra el objeto con los datos del formulario
+        // console.log(nuevaAsociacion); // Muestra el objeto con los datos del formulario
 
         try {
-            await axios.get("/sanctum/csrf-cookie");
-            await axios.post("/api/asociacion", nuevaAsociacion);
+
+            await axios.get(`${state.url}/sanctum/csrf-cookie`);
+            await axios.post(`${state.url}/api/asociacion`, nuevaAsociacion);
             alert("Asociación creada correctamente");
             window.location.href = '/asociaciones';
         } catch (error) {
@@ -46,9 +54,9 @@ export default function CrearAsociacion() {
                         <label htmlFor="">Imagen</label><input className="imagen" name="imagen" type="text" placeholder="" />
                         {/* type="file" */}
                     </div>
-                    <input type="hidden" name="gestor_id" value="1" />
+                    <input type="hidden" name="gestor_id" value="2" />
                     <div>
-                        <button type="submit" className="botonAzul">Crear Asociación</button>
+                        <Link type="submit" className="botonAzul">Crear Asociación</Link>
                     </div>
                 </form>
             </div>

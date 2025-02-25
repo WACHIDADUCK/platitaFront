@@ -12,6 +12,7 @@ import Asociacion from './pages/Asociacion';
 import Logout from './pages/Logout';
 import Evento from './pages/Evento';
 import CrearEvento from './pages/CrearEvento';
+import EditarAsociacion from './pages/EditarAsociacion';
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
               <Route path='/crear_asociacion' element={<CrearAsociacion />} />
               <Route path='/asociaciones' element={<Asociaciones />} />
               <Route path='/asociacion/:id' element={<Asociacion />} />
+              <Route path='/asociacion/editar/:id' element={<EditarAsociacion />} />
               <Route path='/asociaciones/:id' element={<Asociacion />} />
               <Route path='/crear_evento' element={<CrearEvento />} />
               <Route path='/eventos' element={<Eventos />} />
