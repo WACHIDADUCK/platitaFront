@@ -7,9 +7,10 @@ import '../../styles/eventos.css';
 import { useProvider } from "../../providers/ContextProvider";
 
 export default function Evento() {
-    const { data, loading, error } = useFetch("https://guillermo.informaticamajada.es/api/evento");
     const [eventos, setEventos] = useState([]);
     const { state } = useProvider();
+    const [showModal, setShowModal] = useState(false);
+    const [newComment, setNewComment] = useState("");
 
     const idEvento = useParams().id;
     const evento = eventos.find(evento => evento.id == idEvento);
@@ -21,6 +22,12 @@ export default function Evento() {
         if (state?.eventos) setEventos(state.eventos);
     }, [state.eventos]);
 
+    if (!evento) return (<h1>Cargando...</h1>);
+
+    const handleAddComment = () => {
+        console.log("Nuevo comentario:", newComment);
+        setShowModal(false);
+    };
 
     return (
         <div className="asociacionesContainer">
@@ -43,6 +50,9 @@ export default function Evento() {
                     ))}
                 </div>
 
+                <div className="asideDiv">
+                    <Link to={`/cambiar_evento/${evento.id}`} className="link" >Editar Evento</Link>
+                </div>
             </div>
             <div className="col-2">
                 {evento && <div className="eventoContainer">
@@ -69,9 +79,12 @@ export default function Evento() {
                 </div>
                 }
 
+                <div className="comentariosAsociacionCard contenedorEventoContenedor">
+                    <div className="cabecera">
+                        <h4 className="naranja">Comentarios</h4>
+                        <button className="boton" onClick={() => setShowModal(true)}>Añadir comentario</button>
+                    </div>
 
-                <div className=" comentariosAsociacionCard contenedorEventoContenedor">
-                    <h4 className="naranja">Comentarios</h4>
                     <div className="comentarios">
                         {comentarios?.map(comentario => (
                             <div key={comentario.id} className="comentarioContainer">
@@ -84,6 +97,21 @@ export default function Evento() {
                         ))}
                     </div>
                 </div>
+
+                {showModal && (
+                    <div className="modal">
+                        <div className="modal-content">
+                            <span className="close" onClick={() => setShowModal(false)}>&times;</span>
+                            <h2>Añadir Comentario</h2>
+                            <textarea
+                                value={newComment}
+                                onChange={(e) => setNewComment(e.target.value)}
+                                placeholder="Escribe tu comentario aquí..."
+                            />
+                            <button className="boton" onClick={handleAddComment}>Enviar</button>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );
