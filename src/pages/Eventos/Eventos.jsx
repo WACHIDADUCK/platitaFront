@@ -1,9 +1,9 @@
 import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import '../styles/eventos.css';
-import { useProvider } from '../providers/ContextProvider';
-import ListaEventos from '../components/ListaEventos';
-import ListaEventosAside from "../components/ListaEventosAside";
+import '../../styles/eventos.css';
+import { useProvider } from '../../providers/ContextProvider';
+import ListaEventos from '../../components/ListaEventos';
+import ListaEventosAside from "../../components/ListaEventosAside";
 
 export default function Eventos() {
     const { state } = useProvider();
