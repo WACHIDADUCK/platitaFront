@@ -11,6 +11,10 @@ export default function Asociaciones() {
     const [showModal, setShowModal] = useState(false);
     const [newComment, setNewComment] = useState("");
 
+
+
+
+
     const id = useParams().id;
     useEffect(() => {
         if (state?.asociaciones) setAsociacion(state.asociaciones.find(asociacion => asociacion.id == id));

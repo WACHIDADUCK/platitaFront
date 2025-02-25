@@ -4,10 +4,11 @@ import { useProvider } from '../providers/ContextProvider';
 
 
 export default function Login() {
-    const { state } = useProvider();
+    const { state, addCampo } = useProvider();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -16,14 +17,25 @@ export default function Login() {
             const response = await axios.post('/login', { email, password });
             console.log(response);
 
-            const comprobar = await axios.get("/api/user");
-            console.log(comprobar);
+
+
+            const user = await axios.get(`/api/user`);
+            // console.log(response.data);
+            // Guardar el usuario en el sessionStorage
+            sessionStorage.setItem('user', JSON.stringify(user.data));
+
 
             window.location.href = '/';
         } catch (error) {
             console.error('Error al iniciar sesión:', error);
         }
     };
+
+
+    //ACCEDER A DATOS DEL USUARIO
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    const idUser = user ? user.id : null;
+    console.log(user)  ;
 
     return (
         <div>

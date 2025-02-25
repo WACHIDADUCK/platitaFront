@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useProvider } from '../providers/ContextProvider';
 import ListaAsociaciones from "../components/ListaAsociaciones";
 import ListaAsociacionesAside from "../components/ListaAsociacionesAside";
+import axios from "../hooks/axios";
 
 export default function Asociaciones() {
     const { state } = useProvider();
@@ -12,6 +13,8 @@ export default function Asociaciones() {
     const [searchParams, setSearchParams] = useSearchParams();
     const [asociaciones, setAsociaciones] = useState([]);
     const [buscarNombre, setBuscarNombre] = useState("");
+
+
 
     useEffect(() => {
         const busquedaParams = searchParams.get("busqueda");
@@ -45,7 +48,9 @@ export default function Asociaciones() {
         setAsociaciones(filteredAsociaciones);
     };
 
-    const idUser = 2;
+    // Recuperar el usuario de sessionStorage
+
+
     const misAsociaciones = state?.asociaciones?.filter(asociacion => asociacion.gestor_id == idUser);
     const asociacionesQueSiguo = state?.asociaciones?.filter(asociacion => asociacion.users.some(user => user.id == idUser));
 
