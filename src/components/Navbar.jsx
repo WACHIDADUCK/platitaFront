@@ -7,7 +7,15 @@ export default function Navbar() {
     const [login, setLogin] = useState(false);
     const [busqueda, setBusqueda] = useState("");
     const [tipoBuesqueda, setTipoBusqueda] = useState("asociacion");
-    const location = useLocation();
+
+    useEffect(() => {
+        const user = JSON.parse(sessionStorage.getItem('user'));
+        const idUser = user ? user.id : null;
+        if (idUser) {
+            setLogin(true);
+        }
+    }, []);
+
 
     function handleBusqueda() {
         switch (tipoBuesqueda) {
@@ -23,23 +31,7 @@ export default function Navbar() {
         }
     }
 
-    useEffect(() => {
-        const comprobarUsuario = async () => {
-            try {
-                const respuesta = await axios.get("/api/user");
-
-                if (respuesta.status === 200) {
-                    setLogin(true); // Si el status es 200, el usuario está logeado
-                } else {
-                    setLogin(false); // Si no, el usuario no está logeado
-                }
-            } catch (error) {
-                console.error("Error al comprobar la sesión:", error);
-                setLogin(false); // Si hay un error, asumimos que el usuario no está logeado
-            }
-        };
-        comprobarUsuario();
-    }, [location]);
+ 
 
     return (
         <nav className="navbar">
@@ -62,7 +54,6 @@ export default function Navbar() {
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/asociaciones">Asociaciones</Link></li>
                 <li><Link to="/eventos">Eventos</Link></li>
-                {/* status: 200 */}
                 {login ? (
                     <li><Link to="/logout">Logout</Link></li>
                 ) : (
