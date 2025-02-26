@@ -19,9 +19,7 @@ import NotFound from './pages/NotFound';
 import Admin from './pages/Admin';
 
 function App() {
-
-  // Ejemplo de fetch:
-  // const { data, loading, error } = useFetch('https://rickandmortyapi.com/api/character');
+  const user = JSON.parse(sessionStorage.getItem('user')) || {};
 
   return (
     <Router>
@@ -42,7 +40,7 @@ function App() {
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
               <Route path='/logout' element={<Logout />} />
-              <Route path='/admin' element={<Admin />} />
+              {user.admin ? <Route path='/admin' element={<Admin />} /> : null}
               <Route path='/*' element={<NotFound />} />
 
             </Route >
