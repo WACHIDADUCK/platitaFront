@@ -47,7 +47,7 @@ export default function CrearAsociacion() {
                         <label htmlFor="">Descripción</label><input name="descripcion" type="text" rows="5" />
                     </div>
                     <div>
-                        <label htmlFor="">Contacto</label><input name="contacto" type="number" placeholder="" />
+                        <label htmlFor="">Contacto</label><input name="contacto" type="text" placeholder="" />
                     </div>
                     <div>
                         <label htmlFor="">Email</label><input name="email" type="email" placeholder="" />

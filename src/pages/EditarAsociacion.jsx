@@ -27,7 +27,7 @@ export default function CrearAsociacion() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!window.confirm("¿Estás seguro de que quieres crear esta asociación?")) return;
+        if (!window.confirm("¿Estás seguro de que quieres editar esta asociación?")) return;
 
         // Crear un objeto FormData a partir del formulario
         const formData = new FormData(e.target);
@@ -43,7 +43,7 @@ export default function CrearAsociacion() {
             alert("Asociación actualizada correctamente");
             window.location.href = `/asociacion/${id}`;
         } catch (error) {
-            console.error("Error creando la asociación:", error);
+            console.error("Error actualizando la asociación:", error);
         }
     };
 
@@ -99,7 +99,7 @@ export default function CrearAsociacion() {
                         <label htmlFor="">Contacto</label>
                         <input
                             name="contacto"
-                            type="number"
+                            type="text"
                             placeholder=""
                             value={asociacion?.contacto || ''}
                             onChange={handleInputChange}
