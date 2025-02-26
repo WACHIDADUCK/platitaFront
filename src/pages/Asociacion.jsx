@@ -14,9 +14,6 @@ export default function Asociaciones() {
     const idUser = user ? user.id : null;
 
 
-
-
-
     const id = useParams().id;
     useEffect(() => {
         if (state?.asociaciones) setAsociacion(state.asociaciones.find(asociacion => asociacion.id == id));
@@ -26,8 +23,8 @@ export default function Asociaciones() {
     const gestor = asociacion?.users?.find(user => user.id == asociacion.gestor_id);
     const comentarios = asociacion?.comentarios;
     const usuarios = asociacion?.users;
+    // const esGestor = if(asociacion?.gestor_id == idUser) true;
 
-    console.log(asociacion);
 
     const handleAddComment = async () => {
         try {

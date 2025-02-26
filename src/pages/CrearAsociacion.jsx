@@ -8,13 +8,13 @@ export default function CrearAsociacion() {
     const { state } = useProvider();
     const user = JSON.parse(sessionStorage.getItem('user'));
     const idUser = user ? user.id : null;
-    console.log(state.url);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (!window.confirm("¿Estás seguro de que quieres crear esta asociación?")) return;
 
+        console.log("Formulario")
         // Crear un objeto FormData a partir del formulario
         const formData = new FormData(e.target);
 
@@ -22,12 +22,14 @@ export default function CrearAsociacion() {
         const nuevaAsociacion = Object.fromEntries(formData.entries());
         nuevaAsociacion.contacto = parseFloat(nuevaAsociacion.contacto);
 
+        console.log(nuevaAsociacion);
+
         // console.log(nuevaAsociacion); // Muestra el objeto con los datos del formulario
 
         try {
 
-            await axios.get(`${state.url}/sanctum/csrf-cookie`);
-            await axios.post(`${state.url}/api/asociacion`, nuevaAsociacion);
+            await axios.get(`sanctum/csrf-cookie`);
+            await axios.post(`api/asociacion`, nuevaAsociacion);
             alert("Asociación creada correctamente");
             window.location.href = '/asociaciones';
         } catch (error) {
@@ -56,9 +58,9 @@ export default function CrearAsociacion() {
                         <label htmlFor="">Imagen</label><input className="imagen" name="imagen" type="text" placeholder="" />
                         {/* type="file" */}
                     </div>
-                    <input type="hidden" name="gestor_id" value="2" />
+                    <input type="hidden" name="gestor_id" value={idUser} />
                     <div>
-                        <Link type="submit" className="botonAzul">Crear Asociación</Link>
+                        <button type="submit" className="botonAzul">Crear Asociación</button>
                     </div>
                 </form>
             </div>
