@@ -24,7 +24,7 @@ export default function Asociaciones() {
     const comentarios = asociacion?.comentarios;
     const usuarios = asociacion?.users;
     // const esGestor = if(asociacion?.gestor_id == idUser) true;
-
+    console.log(asociacion);
 
     const handleAddComment = async () => {
         try {
@@ -39,10 +39,11 @@ export default function Asociaciones() {
             console.log("Nuevo comentario:", response.data);
             setShowModal(false);
             // Actualiza los comentarios localmente para reflejar el nuevo comentario
-            setAsociacion(prevAsociacion => ({
-                ...prevAsociacion,
-                comentarios: [...prevAsociacion.comentarios, response.data]
-            }));
+            // setAsociacion(prevAsociacion => ({
+            //     ...prevAsociacion,
+            //     comentarios: [...prevAsociacion.comentarios, response.data]
+            // }));
+            window.location.reload();
         } catch (error) {
             console.error("Error añadiendo el comentario:", error);
         }
