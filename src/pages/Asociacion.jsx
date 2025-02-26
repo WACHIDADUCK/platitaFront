@@ -10,6 +10,9 @@ export default function Asociaciones() {
     const [asociacion, setAsociacion] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [newComment, setNewComment] = useState("");
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    const idUser = user ? user.id : null;
+
 
     const id = useParams().id;
     useEffect(() => {
@@ -20,14 +23,13 @@ export default function Asociaciones() {
     const gestor = asociacion?.users?.find(user => user.id == asociacion.gestor_id);
     const comentarios = asociacion?.comentarios;
     const usuarios = asociacion?.users;
-    const user = 2;
+    // const esGestor = if(asociacion?.gestor_id == idUser) true;
 
-    console.log(asociacion);
 
     const handleAddComment = async () => {
         try {
             const response = await axios.post(`/api/comentario`, {
-                user_id: user,// Asegúrate de que el usuario esté autenticado y su ID esté disponible en el estado
+                user_id: idUser,// Asegúrate de que el usuario esté autenticado y su ID esté disponible en el estado
                 comentario: newComment,
                 valoracion: 3,
                 comentarioable_type: "App\\Models\\Asociacion",

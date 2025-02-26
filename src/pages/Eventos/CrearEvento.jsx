@@ -3,6 +3,8 @@ import axios from "../../hooks/axios";
 export default function CrearEvento() {
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const user = JSON.parse(sessionStorage.getItem('user'));
+        const idUser = user ? user.id : null;
 
         if (!window.confirm("¿Estás seguro de que quieres crear este evento?")) return;
 

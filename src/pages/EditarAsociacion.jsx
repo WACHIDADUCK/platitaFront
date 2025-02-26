@@ -10,6 +10,8 @@ export default function CrearAsociacion() {
     const esGestor = useProvider().state.esGestor;
 
     const { state } = useProvider();
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    const idUser = user ? user.id : null;
 
     console.log(state.url);
 
@@ -36,8 +38,8 @@ export default function CrearAsociacion() {
 
 
         try {
-            await axios.get(`${state.url}/sanctum/csrf-cookie`);
-            await axios.put(`${state.url}/api/asociacion/${id}`, nuevaAsociacion);
+            await axios.get(`sanctum/csrf-cookie`);
+            await axios.put(`api/asociacion/${id}`, nuevaAsociacion);
             alert("Asociación actualizada correctamente");
             window.location.href = `/asociacion/${id}`;
         } catch (error) {
