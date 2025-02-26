@@ -7,7 +7,9 @@ export default function Navbar() {
     const [login, setLogin] = useState(false);
     const [busqueda, setBusqueda] = useState("");
     const [tipoBuesqueda, setTipoBusqueda] = useState("asociacion");
-
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    // const idUser = user ? user.id : null;
+    const idUser = 1;
     useEffect(() => {
         const user = JSON.parse(sessionStorage.getItem('user'));
         const idUser = user ? user.id : null;
@@ -31,7 +33,7 @@ export default function Navbar() {
         }
     }
 
- 
+
 
     return (
         <nav className="navbar">
@@ -51,6 +53,7 @@ export default function Navbar() {
             </div>
 
             <ul className="nav-links">
+                {idUser === 1 && <li><Link to="/admin">Admin</Link></li>}
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/asociaciones">Asociaciones</Link></li>
                 <li><Link to="/eventos">Eventos</Link></li>
