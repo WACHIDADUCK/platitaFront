@@ -9,10 +9,10 @@ export default function Logout() {
             const response = await axios.post('/logout');
             console.log(response);
             window.location.href = '/';
-            if(response){
+            if (response) {
                 sessionStorage.removeItem('user');
             }
-            
+
         } catch (error) {
             console.error('Error al cerrar sesión:', error);
         }

@@ -5,6 +5,7 @@ import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 import '../../styles/eventos.css';
 import { useProvider } from "../../providers/ContextProvider";
+import axios from "../../hooks/axios";
 
 export default function Evento() {
     const [eventos, setEventos] = useState([]);
@@ -14,21 +15,36 @@ export default function Evento() {
     const user = JSON.parse(sessionStorage.getItem('user'));
     const idUser = user ? user.id : null;
 
+    useEffect(() => {
+        if (state?.eventos) setEventos(state.eventos);
+    }, [state.eventos]);
+
     const idEvento = useParams().id;
     const evento = eventos.find(evento => evento.id == idEvento);
 
     const comentarios = evento?.comentarios;
     const usuarios = evento?.users;
     const asociaciones = evento?.asociacions;
-    useEffect(() => {
-        if (state?.eventos) setEventos(state.eventos);
-    }, [state.eventos]);
 
     if (!evento) return (<h1>Cargando...</h1>);
 
-    const handleAddComment = () => {
-        console.log("Nuevo comentario:", newComment);
-        setShowModal(false);
+    console.log(evento);
+
+    const handleAddComment = async () => {
+        try {
+            const response = await axios.post(`/api/comentario`, {
+                user_id: idUser,// Asegúrate de que el usuario esté autenticado y su ID esté disponible en el estado
+                comentario: newComment,
+                comentarioable_type: "App\\Models\\Evento",
+                comentarioable_id: evento.id
+            });
+
+            console.log("Nuevo comentario:", response.data);
+            setShowModal(false);
+            window.location.reload();
+        } catch (error) {
+            console.error("Error añadiendo el comentario:", error);
+        }
     };
 
     return (
