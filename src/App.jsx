@@ -16,6 +16,7 @@ import CambiarEvento from './pages/Eventos/CambiarEvento';
 import BorrarEvento from './pages/Eventos/BorrarEvento';
 import EditarAsociacion from './pages/EditarAsociacion';
 import NotFound from './pages/NotFound';
+import Admin from './pages/Admin';
 
 function App() {
 
@@ -41,6 +42,7 @@ function App() {
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
               <Route path='/logout' element={<Logout />} />
+              <Route path='/admin' element={<Admin />} />
               <Route path='/*' element={<NotFound />} />
 
             </Route >

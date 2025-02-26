@@ -23,11 +23,9 @@ export default function CrearAsociacion() {
         nuevaAsociacion.contacto = parseFloat(nuevaAsociacion.contacto);
 
         console.log(nuevaAsociacion);
-
         // console.log(nuevaAsociacion); // Muestra el objeto con los datos del formulario
 
         try {
-
             await axios.get(`sanctum/csrf-cookie`);
             await axios.post(`api/asociacion`, nuevaAsociacion);
             alert("Asociación creada correctamente");
