@@ -99,15 +99,11 @@ export default function Eventos() {
     return (
         <div className="asociacionesContainer">
             <div className="col-1">
-                <div className="asideDiv justify-center divBotonCrearAsociacion boton">
-                    <Link className="link" to="/crear_evento">Crear Evento</Link>
-                </div>
-
-                <div className="asideDiv misAsociaciones">
+                <div className="asideDiv">
                     <ListaEventosAside eventos={misEventos} cabecero={"Mis eventos"} />
                 </div>
 
-                <div className="asideDiv misAsociaciones">
+                <div className="asideDiv">
                     <ListaEventosAside eventos={asistireEventos} cabecero={"Eventos que asistiré"} />
                 </div>
             </div>

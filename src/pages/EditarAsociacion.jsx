@@ -60,7 +60,7 @@ export default function CrearAsociacion() {
         });
     }, [state]);
 
-
+    console.log(asociacion);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;

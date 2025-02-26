@@ -65,6 +65,10 @@ export default function Asociaciones() {
                 <div className="asideDiv ">
                     <Link to={`/asociacion/editar/${asociacion.id}`} className="link" >Editar Asociacion</Link>
                 </div>
+
+                <div className="asideDiv justify-center divBotonCrearAsociacion boton">
+                    <Link className="link" to="/crear_evento">Crear Evento</Link>
+                </div>
             </div>
 
             <div className="col-2">
