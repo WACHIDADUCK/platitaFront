@@ -15,7 +15,7 @@ import CrearEvento from './pages/Eventos/CrearEvento';
 import CambiarEvento from './pages/Eventos/CambiarEvento';
 import BorrarEvento from './pages/Eventos/BorrarEvento';
 import EditarAsociacion from './pages/EditarAsociacion';
-
+import NotFound from './pages/NotFound';
 
 function App() {
 
@@ -41,6 +41,8 @@ function App() {
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
               <Route path='/logout' element={<Logout />} />
+              <Route path='/*' element={<NotFound />} />
+
             </Route >
           </Routes >
         </ContextProvider >

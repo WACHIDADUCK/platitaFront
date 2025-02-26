@@ -11,6 +11,8 @@ export default function Evento() {
     const { state } = useProvider();
     const [showModal, setShowModal] = useState(false);
     const [newComment, setNewComment] = useState("");
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    const idUser = user ? user.id : null;
 
     const idEvento = useParams().id;
     const evento = eventos.find(evento => evento.id == idEvento);

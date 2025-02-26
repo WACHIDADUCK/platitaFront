@@ -3,6 +3,8 @@ import { Link, useParams } from "react-router-dom";
 
 const BorrarEvento = () => {
     const params = useParams();
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    const idUser = user ? user.id : null;
 
     const eliminar = async () => {
         try {

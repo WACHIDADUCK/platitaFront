@@ -90,8 +90,9 @@ export default function Eventos() {
         setEventos(sortedEventos);
     };
 
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    const idUser = user ? user.id : null;
 
-    const idUser = 2;
     const misEventos = state.eventos ? state.eventos.filter(evento => evento.asociacions.find(asociacion => asociacion.gestor_id == idUser) && evento.estado == "abierto") : [];
     const asistireEventos = state.eventos ? state.eventos.filter(evento => evento.users.find(user => user.id == idUser) && evento.estado == "abierto") : [];
 
