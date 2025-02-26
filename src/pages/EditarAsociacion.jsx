@@ -34,8 +34,6 @@ export default function CrearAsociacion() {
 
         // Convertir FormData a un objeto plano
         const nuevaAsociacion = Object.fromEntries(formData.entries());
-        nuevaAsociacion.contacto = parseFloat(nuevaAsociacion.contacto);
-
 
         try {
             await axios.get(`sanctum/csrf-cookie`);

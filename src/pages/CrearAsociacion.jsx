@@ -20,7 +20,6 @@ export default function CrearAsociacion() {
 
         // Convertir FormData a un objeto plano
         const nuevaAsociacion = Object.fromEntries(formData.entries());
-        nuevaAsociacion.contacto = parseFloat(nuevaAsociacion.contacto);
 
         console.log(nuevaAsociacion);
         // console.log(nuevaAsociacion); // Muestra el objeto con los datos del formulario
