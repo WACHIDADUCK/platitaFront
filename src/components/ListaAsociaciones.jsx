@@ -4,7 +4,7 @@ export default function ListaAsociaciones({ asociaciones }) {
 
     return (
         <div className="contendorCardEventos">
-            {asociaciones.map(asociacion => {
+            {asociaciones.filter(asociacion => asociacion.acreditado).map(asociacion => {
                 return <Link to={`/asociacion/${asociacion.id}`} key={asociacion.id} className="asideDivAsociaciones">
 
                     <div className="contenerdorImg">

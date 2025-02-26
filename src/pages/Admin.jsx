@@ -19,6 +19,19 @@ export default function Admin() {
 
     console.log(asociaciones)
 
+    const acreditar = async (id, acreditacion) => {
+        if (!window.confirm("¿Estás seguro de que quieres modificar la acreditación esta asociación?")) return;
+
+        try {
+            await axios.get(`sanctum/csrf-cookie`);
+            await axios.patch(`api/asociacion/${id}`, { acreditado: !acreditacion });
+            alert("Asociación actualizada correctamente");
+            window.location.reload();
+        } catch (error) {
+            console.error("Error actualizando la asociación:", error);
+        }
+    }
+
     return (
         <div className="asociacionesContainer">
             <table className="asociacion-table">
@@ -39,7 +52,9 @@ export default function Admin() {
                             <td>{asociacion.nombre}</td>
                             <td>{asociacion.email}</td>
                             <td>{asociacion.contacto}</td>
-                            <td>{asociacion.acreditado ? "SI" : "NO"} {asociacion.acreditado ? <button className="btn btn-delete">Desacreditar</button> : <button className="btn btn-edit">Acreditar</button>}</td>
+                            <td>{asociacion.acreditado
+                                ? <button className="btn btn-delete" onClick={() => acreditar(asociacion.id, asociacion.acreditado)}>Desacreditar</button>
+                                : <button className="btn btn-edit" onClick={() => acreditar(asociacion.id, asociacion.acreditado)}>Acreditar</button>}</td>
                             <td className="actions">
                                 <Link to={`/asociacion/editar/${asociacion.id}`} className="btn btn-edit">Editar</Link>
                                 <Link to={`/asociacion/borrar/${asociacion.id}`} className="btn btn-delete">Eliminar</Link>
