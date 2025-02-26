@@ -31,7 +31,6 @@ export default function Asociaciones() {
             const response = await axios.post(`/api/comentario`, {
                 user_id: idUser,// Asegúrate de que el usuario esté autenticado y su ID esté disponible en el estado
                 comentario: newComment,
-                valoracion: 3,
                 comentarioable_type: "App\\Models\\Asociacion",
                 comentarioable_id: asociacion.id
             });
@@ -39,10 +38,6 @@ export default function Asociaciones() {
             console.log("Nuevo comentario:", response.data);
             setShowModal(false);
             // Actualiza los comentarios localmente para reflejar el nuevo comentario
-            // setAsociacion(prevAsociacion => ({
-            //     ...prevAsociacion,
-            //     comentarios: [...prevAsociacion.comentarios, response.data]
-            // }));
             window.location.reload();
         } catch (error) {
             console.error("Error añadiendo el comentario:", error);

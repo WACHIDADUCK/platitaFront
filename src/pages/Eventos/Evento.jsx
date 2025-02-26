@@ -35,7 +35,6 @@ export default function Evento() {
             const response = await axios.post(`/api/comentario`, {
                 user_id: idUser,// Asegúrate de que el usuario esté autenticado y su ID esté disponible en el estado
                 comentario: newComment,
-                valoracion: 3,
                 comentarioable_type: "App\\Models\\Evento",
                 comentarioable_id: evento.id
             });
