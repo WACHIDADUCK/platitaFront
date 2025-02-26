@@ -8,7 +8,7 @@ export default function Navbar() {
     const [busqueda, setBusqueda] = useState("");
     const [tipoBuesqueda, setTipoBusqueda] = useState("asociacion");
     const user = JSON.parse(sessionStorage.getItem('user')) || {};
-    const idUser = user ? user.id : null;
+    //const idUser = user ? user.id : null;
 
     useEffect(() => {
         const user = JSON.parse(sessionStorage.getItem('user'));
