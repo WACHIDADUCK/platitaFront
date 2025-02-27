@@ -129,7 +129,7 @@ const CambiarEvento = () => {
                         <input type="text" name="imagen" required value={eventoAntiguo.imagen} onChange={handleChange} />
                     </div>
                     <div>
-                        <button type="submit" className="botonAzul">Crear Evento</button>
+                        <button type="submit" className="botonAzul">Editar Evento</button>
                     </div>
                 </form>
             </div>
