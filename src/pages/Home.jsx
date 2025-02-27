@@ -1,42 +1,46 @@
+import { useCalendarApp, ScheduleXCalendar } from '@schedule-x/react'
+import { useEffect, useState } from "react";
+import {
+    createViewDay,
+    createViewMonthAgenda,
+    createViewMonthGrid,
+    createViewWeek,
+} from '@schedule-x/calendar'
+import { createEventsServicePlugin } from '@schedule-x/events-service'
+import '@schedule-x/theme-default/dist/index.css'
+import '../styles/calendar.css';
+import { useProvider } from '../providers/ContextProvider';
+import Calendario from '../components/Calendario';
+import Claudinary from '../components/Claudinary';
 
-// import { createCalendar, createViewMonthGrid } from '@schedule-x/calendar';
-// import {
-//     createViewDay,
-//     createViewMonthAgenda,
-//     createViewMonthGrid,
-//     createViewWeek,
-// } from '@schedule-x/calendar'
-// import { createEventsServicePlugin } from '@schedule-x/events-service'
-// import { useEffect, useState } from "react";
-
-// import '@schedule-x/theme-default/dist/index.css'
 
 export default function Home() {
-//     const eventsService = useState(() => createEventsServicePlugin())[0]
 
-//     const calendar = useCalendarApp({
-//         views: [createViewDay(), createViewWeek(), createViewMonthGrid(), createViewMonthAgenda()],
-//         events: [
-//             {
-//                 id: '1',
-//                 title: 'Event 1',
-//                 start: '2023-12-16',
-//                 end: '2023-12-16',
-//             },
-//         ],
-//         plugins: [eventsService]
-//     })
+    const { state } = useProvider();
+    const [eventos, setEventos] = useState([]);
 
-//     useEffect(() => {
-//         // get all events
-//         eventsService.getAll()
-//     }, [])
+    const ev2 = eventos ? eventos : [];
 
-return (
-    <div>
-        <h1>Home</h1>
-        {/* <ScheduleXCalendar calendarApp={calendar} /> */}
-    </div>
-)
+    useEffect(() => {
+        if (state.eventos) {
+            const e = state.eventos.map(e => ({
+                id: e.id.toString(),
+                title: e.nombre,
+                start: e.fecha_inicio.split('T')[0],
+                end: e.fecha_fin.split('T')[0],
+            }));
+
+            setEventos(e);
+        }
+
+    }, [state.eventos]);  // Asegúrate de que state.eventos esté en las dependencias
+
+
+    return (
+        <div>
+            {/* <Claudinary /> */}
+            {ev2[0]&&<Calendario eventos={ev2} />}
+        </div>
+    )
 }
 
