@@ -72,7 +72,7 @@ export default function CrearAsociacion() {
         <div className="crearAsociacion flex-center">
             <div className="crearAsociacionForm">
                 <form method="POST" onSubmit={handleSubmit}>
-                    <h3>Crear Asociación</h3>
+                    <h3>Editar Asociación</h3>
                     <div>
                         <label htmlFor="">Nombre</label>
                         <input
