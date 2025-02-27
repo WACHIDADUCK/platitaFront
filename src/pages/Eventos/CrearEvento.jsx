@@ -48,6 +48,10 @@ export default function CrearEvento() {
                         <input type="text" rows="5" name="descripcion" required />
                     </div>
                     <div>
+                        <label htmlFor="lugar">Lugar</label>
+                        <input type="text" placeholder="" name="lugar" required />
+                    </div>
+                    <div>
                         <label htmlFor="tipo">Tipo</label>
                         <select name="tipo">
                             <option value="evento">evento</option>
@@ -91,8 +95,8 @@ export default function CrearEvento() {
                         <input type="number" name="aforo_no_socios" required />
                     </div>
                     <div>
-                        <label htmlFor="voluntarios">Voluntarios necesarios</label>
-                        <input type="number" name="voluntarios" required />
+                        <label htmlFor="aforo_voluntarios">Voluntarios necesarios</label>
+                        <input type="number" name="aforo_voluntarios" required />
                     </div>
                     <div>
                         <label htmlFor="imagen">Imágenes</label>
