@@ -54,7 +54,7 @@ export default function Navbar() {
 
             <ul className="nav-links">
                 {idUser === 1 && <li><Link to="/admin">Admin</Link></li>}
-                <li><Link to="/">Home</Link></li>
+                <li><Link to="/">Calendario</Link></li>
                 <li><Link to="/asociaciones">Asociaciones</Link></li>
                 <li><Link to="/eventos">Eventos</Link></li>
                 {login ? (
