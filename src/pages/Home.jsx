@@ -1,4 +1,3 @@
-
 import { useCalendarApp, ScheduleXCalendar } from '@schedule-x/react'
 import { useEffect, useState } from "react";
 import {
@@ -12,6 +11,7 @@ import '@schedule-x/theme-default/dist/index.css'
 import '../styles/calendar.css';
 import { useProvider } from '../providers/ContextProvider';
 import Calendario from '../components/Calendario';
+import Claudinary from '../components/Claudinary';
 
 
 export default function Home() {
@@ -38,6 +38,7 @@ export default function Home() {
 
     return (
         <div>
+            {/* <Claudinary /> */}
             {ev2[0]&&<Calendario eventos={ev2} />}
         </div>
     )
