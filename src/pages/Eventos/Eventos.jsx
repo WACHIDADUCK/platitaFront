@@ -6,7 +6,7 @@ import ListaEventos from '../../components/ListaEventos';
 import ListaEventosAside from "../../components/ListaEventosAside";
 
 export default function Eventos() {
-    const { state } = useProvider();
+    const { state, filtrarEventosAcreditados } = useProvider();
     const [searchParams, setSearchParams] = useSearchParams();
     const [eventos, setEventos] = useState([]);
 
@@ -22,7 +22,7 @@ export default function Eventos() {
     }, [searchParams]);
 
     useEffect(() => {
-        if (state.eventos) setEventos(state.eventos);
+        if (state.eventos) setEventos(filtrarEventosAcreditados());
     }, [state]);
 
     useEffect(() => {
@@ -32,7 +32,7 @@ export default function Eventos() {
     const handleChange = () => {
         if (!state.eventos) return;
 
-        let filteredEventos = state.eventos;
+        let filteredEventos = filtrarEventosAcreditados();
 
         if (buscarNombre.toLowerCase() !== "") {
             filteredEventos = filteredEventos.filter(evento => evento.nombre.toLowerCase().includes(buscarNombre.toLowerCase()));
@@ -94,7 +94,7 @@ export default function Eventos() {
     const idUser = user ? user.id : null;
 
     const misEventos = state.eventos ? state.eventos.filter(evento => evento.asociacions.find(asociacion => asociacion.gestor_id == idUser) && evento.estado == "abierto") : [];
-    const asistireEventos = state.eventos ? state.eventos.filter(evento => evento.users.find(user => user.id == idUser) && evento.estado == "abierto") : [];
+    const asistireEventos = state.eventos ? filtrarEventosAcreditados().filter(evento => evento.users.find(user => user.id == idUser) && evento.estado == "abierto") : [];
 
     return (
         <div className="asociacionesContainer">

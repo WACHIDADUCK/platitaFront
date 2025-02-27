@@ -64,7 +64,7 @@ const CambiarEvento = () => {
         <div className="crearAsociacion flex-center">
             <div className="crearAsociacionForm">
                 <form method="PUT" onSubmit={handleSubmit}>
-                    <h3>Crear Evento</h3>
+                    <h3>Editar Evento</h3>
                     <div>
                         <label htmlFor="nombre">Título</label>
                         <input type="text" placeholder="" name="nombre" required value={eventoAntiguo.nombre} onChange={handleChange} />
@@ -72,6 +72,10 @@ const CambiarEvento = () => {
                     <div>
                         <label htmlFor="descripcion">Descripción</label>
                         <input type="text" rows="5" name="descripcion" required value={eventoAntiguo.descripcion} onChange={handleChange} />
+                    </div>
+                    <div>
+                        <label htmlFor="lugar">Lugar</label>
+                        <input type="text" placeholder="" name="lugar" required value={eventoAntiguo.lugar} onChange={handleChange} />
                     </div>
                     <div>
                         <label htmlFor="tipo">Tipo</label>
@@ -117,8 +121,8 @@ const CambiarEvento = () => {
                         <input type="number" name="aforo_no_socios" required value={eventoAntiguo.aforo_no_socios} onChange={handleChange} />
                     </div>
                     <div>
-                        <label htmlFor="voluntarios">Voluntarios necesarios</label>
-                        <input type="number" name="voluntarios" required value={eventoAntiguo.voluntarios} onChange={handleChange} />
+                        <label htmlFor="aforo_voluntarios">Voluntarios necesarios</label>
+                        <input type="number" name="aforo_voluntarios" required value={eventoAntiguo.aforo_voluntarios} onChange={handleChange} />
                     </div>
                     <div>
                         <label htmlFor="imagen">Imágenes</label>

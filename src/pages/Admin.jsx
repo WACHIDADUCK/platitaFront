@@ -55,9 +55,11 @@ export default function Admin() {
                             <td>{asociacion.acreditado
                                 ? <button className="btn btn-delete" onClick={() => acreditar(asociacion.id, asociacion.acreditado)}>Desacreditar</button>
                                 : <button className="btn btn-edit" onClick={() => acreditar(asociacion.id, asociacion.acreditado)}>Acreditar</button>}</td>
-                            <td className="actions">
-                                <Link to={`/asociacion/editar/${asociacion.id}`} className="btn btn-edit">Editar</Link>
-                                <Link to={`/asociacion/borrar/${asociacion.id}`} className="btn btn-delete">Eliminar</Link>
+                            <td>
+                                <div className="actions">
+                                    <Link to={`/asociacion/editar/${asociacion.id}`} className="btn btn-edit">Editar</Link>
+                                    <Link to={`/asociacion/borrar/${asociacion.id}`} className="btn btn-delete">Eliminar</Link>
+                                </div>
                             </td>
                         </tr>
                     ))}

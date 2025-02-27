@@ -16,14 +16,14 @@ import Claudinary from '../components/Claudinary';
 
 export default function Home() {
 
-    const { state } = useProvider();
+    const { state, filtrarEventosAcreditados } = useProvider();
     const [eventos, setEventos] = useState([]);
 
     const ev2 = eventos ? eventos : [];
 
     useEffect(() => {
         if (state.eventos) {
-            const e = state.eventos.map(e => ({
+            const e = filtrarEventosAcreditados().map(e => ({
                 id: e.id.toString(),
                 title: e.nombre,
                 start: e.fecha_inicio.split('T')[0],
@@ -35,11 +35,10 @@ export default function Home() {
 
     }, [state.eventos]);  // Asegúrate de que state.eventos esté en las dependencias
 
-
     return (
         <div>
             {/* <Claudinary /> */}
-            {ev2[0]&&<Calendario eventos={ev2} />}
+            {ev2[0] && <Calendario eventos={ev2} />}
         </div>
     )
 }
