@@ -24,23 +24,21 @@ export default function Asociaciones() {
     const comentarios = asociacion?.comentarios;
     const usuarios = asociacion?.users;
     // const esGestor = if(asociacion?.gestor_id == idUser) true;
-
+    console.log(asociacion);
 
     const handleAddComment = async () => {
         try {
             const response = await axios.post(`/api/comentario`, {
                 user_id: idUser,// Asegúrate de que el usuario esté autenticado y su ID esté disponible en el estado
                 comentario: newComment,
-                comentarioable_type: 'App\Models\Asociacion',
+                comentarioable_type: "App\\Models\\Asociacion",
                 comentarioable_id: asociacion.id
             });
+
             console.log("Nuevo comentario:", response.data);
             setShowModal(false);
             // Actualiza los comentarios localmente para reflejar el nuevo comentario
-            setAsociacion(prevAsociacion => ({
-                ...prevAsociacion,
-                comentarios: [...prevAsociacion.comentarios, response.data]
-            }));
+            window.location.reload();
         } catch (error) {
             console.error("Error añadiendo el comentario:", error);
         }
@@ -62,6 +60,10 @@ export default function Asociaciones() {
 
                 <div className="asideDiv ">
                     <Link to={`/asociacion/editar/${asociacion.id}`} className="link" >Editar Asociacion</Link>
+                </div>
+
+                <div className="asideDiv justify-center divBotonCrearAsociacion boton">
+                    <Link className="link" to="/crear_evento">Crear Evento</Link>
                 </div>
             </div>
 
