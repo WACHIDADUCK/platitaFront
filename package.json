@@ -10,7 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@cloudinary/react": "^1.14.0",
+    "@cloudinary/url-gen": "^1.21.0",
+    "@schedule-x/calendar": "^2.20.0",
+    "@schedule-x/events-service": "^2.20.0",
+    "@schedule-x/react": "^2.20.0",
+    "@schedule-x/theme-default": "^2.20.0",
     "axios": "^1.7.9",
+    "date-fns": "^4.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.1.5"

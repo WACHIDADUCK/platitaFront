@@ -45,7 +45,7 @@
 }
 
 
-body{
+body {
   background-color: #F1EFEA;
   display: flex;
   flex-direction: column;
@@ -54,12 +54,15 @@ body{
 
 
 main {
-  flex: 1; /* Hace que el contenido principal ocupe el espacio restante */
-  padding: 20px; /* Opcional: añade un poco de espacio interno */
+  flex: 1;
+  /* Hace que el contenido principal ocupe el espacio restante */
+  padding: 20px;
+  /* Opcional: añade un poco de espacio interno */
 }
+
 /* NavBar */
 
-.logo{
+.logo {
   width: 50px;
 }
 
@@ -97,9 +100,29 @@ main {
 }
 
 
+.navBarFiltro {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
 
+.navBarFiltro input,
+.navBarFiltro select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  flex: 1;
+  min-width: 150px;
+}
 
-
+.navbar .botonAzul{
+  background-color: #287FB8;
+  color: #fff;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
 
 
 /* Footer */
@@ -110,7 +133,8 @@ main {
   padding: 0.1rem 0 1.5rem;
   display: flex;
   justify-content: center;
-  margin-top: auto; /* Empuja el footer hacia abajo */
+  margin-top: auto;
+  /* Empuja el footer hacia abajo */
   margin-top: 20px;
 }
 
@@ -124,7 +148,8 @@ main {
   margin: 10px 0 0;
   display: flex;
   justify-content: center;
-  gap: 20px; /* Espacio entre los enlaces */
+  gap: 20px;
+  /* Espacio entre los enlaces */
 }
 
 .footer__links a {
@@ -136,14 +161,32 @@ main {
   text-decoration: underline;
 }
 
-.asociacionesContainer{
+footer .cc {
+  height: 30px;
+  width: 30px;
+}
+
+.wcag{
+  width: 100px;
+  margin-left: 20px;
+}
+
+
+
+
+
+
+
+
+
+.asociacionesContainer {
   display: flex;
   justify-content: center;
   flex-direction: row;
 }
 
-.cards-header{
-  background-color: #fff  ;
+.cards-header {
+  background-color: #fff;
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
   padding: 10px 0px;
 }
@@ -151,59 +194,9 @@ main {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-.asideDiv{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 20px 15px 7px 15px ;
-  width: 100%;
-  background-color: #fff;
-  padding: 20px 0px;
-}
-
-
-.asideDiv .link{
-background-color: #287FB8;
-color: #fff;
-text-decoration: none;
-padding: 10px;
-border-radius: 7px;
-}
-
-.asideDiv .flex-start{
-  display: flex;
-  justify-content: flex-start;
-}
-
-.misAsociaciones{
-  display: flex;
-  align-items: start;
-  margin-top: 0px;
-  padding: 0px;
-}                    
-
-.misAsociaciones h4 {
-  margin: 10px 20px; 
-  align-self: flex-start; 
-}
-
-
-
 /* CREAR ASOCIACION */
 
-.crearAsociacionForm{
+.crearAsociacionForm {
   display: flex;
   background-color: #fff;
   justify-content: center;
@@ -212,7 +205,7 @@ border-radius: 7px;
   margin: 20px 0px;
 }
 
-.crearAsociacionForm h3{
+.crearAsociacionForm h3 {
   text-align: start;
 }
 
@@ -229,17 +222,21 @@ border-radius: 7px;
 }
 
 .crearAsociacionForm div:last-child {
-  margin-bottom : 20px;
+  margin-bottom: 20px;
 }
 
-.crearAsociacionForm input{
+.crearAsociacionForm input {
   width: 70%;
-  padding: 5px; 
+  padding: 5px;
   box-sizing: border-box;
   border: 2px solid #D9D9D9;
 }
 
-.crearAsociacionForm form{
+.crearAsociacion {
+  flex-direction: column;
+}
+
+.crearAsociacionForm form {
   justify-content: start;
   align-items: center;
   width: 100%;
@@ -247,87 +244,41 @@ border-radius: 7px;
   margin: 10px 0px;
 }
 
-.flex-center{
+.flex-center {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.botonAzul{
+.botonAzul {
   background-color: #287FB8;
-  color : #fff;
+  color: #fff;
   padding: 5px 10px;
   text-decoration: none;
   border-radius: 5px;
 }
 
-.asociacion-card{
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-direction: row;
-  width: 100%;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+.misAsociacionesDivH4{
 }
 
-.asociacion-card img{
+.misAsociacionesContainer{
+  border-top: 2px solid rgba(0, 0, 0, 0.15);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  color: black;
+  text-decoration: none;
+}
+
+.misAsociacionesContainer img{
   width: 100px;
   margin: 10px;
 }
 
-.asociacion-card .asociacion-header h3{
-justify-self: start;
-margin-left: 0.1rem;
+.naranja{
+  color: #faa646;
 }
 
-.asociacionesContainer .col-1{
-  margin: 0px 7px 0px 0px;
-  width: 50%;
-}
-
-.asociacionesContainer .col-2{
-  margin: 20px;
-  width: 70%;
-}
-
-
-
-
-
-
-/* CONTENEDOR EVENTOS */
-
-.asociacionInfo{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-}
-
-
-.asociacionInfo p{
-  font-size: 12px;
-  font-weight: bold;
-  color: #aaa8a8;
-}
-
-
-.contendorCardEventos{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #fff;
-}
-
-.asociacionInfo img{
-  width: 10px;
-}
-
-.asociacionInfo div {
-  display: flex;
-  align-items: center;
-}
 
 
