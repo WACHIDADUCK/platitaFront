@@ -232,6 +232,10 @@ footer .cc {
   border: 2px solid #D9D9D9;
 }
 
+.crearAsociacion {
+  flex-direction: column;
+}
+
 .crearAsociacionForm form {
   justify-content: start;
   align-items: center;
