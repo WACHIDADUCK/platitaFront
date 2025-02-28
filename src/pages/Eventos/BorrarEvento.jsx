@@ -1,17 +1,18 @@
 import axios from "../../hooks/axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 const BorrarEvento = () => {
     const params = useParams();
     const user = JSON.parse(sessionStorage.getItem('user'));
     const idUser = user ? user.id : null;
+    const navigate = useNavigate();
 
     const eliminar = async () => {
         try {
             await axios.get("/sanctum/csrf-cookie");
             await axios.delete(`/api/evento/${params.id}`)
             alert("Evento eliminado correctamente");
-            window.location.href = '/eventos';
+            navigate('/eventos');
         } catch (error) {
             console.error("Error creando el evento:", error);
         }
