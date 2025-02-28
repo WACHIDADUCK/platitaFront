@@ -1,14 +1,13 @@
 import { useState } from 'react';
 import axios from '../hooks/axios';
 import { useProvider } from '../providers/ContextProvider';
-
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
     const { state, addCampo } = useProvider();
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
+    const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -17,15 +16,13 @@ export default function Login() {
             const response = await axios.post('/login', { email, password });
             console.log(response);
 
-
-
             const user = await axios.get(`/api/user`);
             // console.log(response.data);
             // Guardar el usuario en el sessionStorage
             sessionStorage.setItem('user', JSON.stringify(user.data));
 
-
-            window.location.href = '/';
+            navigate('/');
+            navigate(0);
         } catch (error) {
             console.error('Error al iniciar sesión:', error);
         }
@@ -35,7 +32,7 @@ export default function Login() {
     //ACCEDER A DATOS DEL USUARIO
     const user = JSON.parse(sessionStorage.getItem('user'));
     const idUser = user ? user.id : null;
-    console.log(user)  ;
+    console.log(user);
 
     return (
         <div>
