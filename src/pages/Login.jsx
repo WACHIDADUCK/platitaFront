@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import axios from '../hooks/axios';
-import { useProvider } from '../providers/ContextProvider';
 import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
-    const { state, addCampo } = useProvider();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();

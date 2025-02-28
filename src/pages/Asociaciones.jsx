@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { useProvider } from '../providers/ContextProvider';
 import ListaAsociaciones from "../components/ListaAsociaciones";
 import ListaAsociacionesAside from "../components/ListaAsociacionesAside";
-import axios from "../hooks/axios";
 
 export default function Asociaciones() {
     const { state } = useProvider();

@@ -4,9 +4,8 @@ import Footer from "../components/Footer";
 import { useEffect } from 'react';
 import { useFetch } from '../hooks/useFetch';
 import { useProvider } from '../providers/ContextProvider';
-import axios from "../hooks/axios";
 
-export default function Layout({ children }) {
+export default function Layout() {
     const { state, addCampo } = useProvider();
     const url = { data: "https://guillermo.informaticamajada.es" };
 
