@@ -1,5 +1,5 @@
 import axios from "../../hooks/axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useProvider } from "../../providers/ContextProvider";
 import { useState, useEffect } from "react";
 
@@ -9,6 +9,7 @@ const CambiarEvento = () => {
     const [eventoAntiguo, setEventoAntiguo] = useState(null);
     const user = JSON.parse(sessionStorage.getItem('user'));
     const idUser = user ? user.id : null;
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (state.eventos) {
@@ -54,7 +55,7 @@ const CambiarEvento = () => {
             await axios.get("/sanctum/csrf-cookie");
             await axios.put(`/api/evento/${params.id}`, nuevoEvento);
             alert("Evento modificado correctamente");
-            window.location.href = '/eventos';
+            navigate('/eventos');
         } catch (error) {
             console.error("Error creando el evento:", error);
         }
@@ -129,7 +130,7 @@ const CambiarEvento = () => {
                         <input type="text" name="imagen" required value={eventoAntiguo.imagen} onChange={handleChange} />
                     </div>
                     <div>
-                        <button type="submit" className="botonAzul">Crear Evento</button>
+                        <button type="submit" className="botonAzul">Editar Evento</button>
                     </div>
                 </form>
             </div>

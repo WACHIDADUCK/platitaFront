@@ -1,10 +1,12 @@
 import axios from "../../hooks/axios";
+import { useNavigate } from "react-router-dom";
 
 export default function CrearEvento() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const user = JSON.parse(sessionStorage.getItem('user'));
         const idUser = user ? user.id : null;
+        const navigate = useNavigate();
 
         if (!window.confirm("¿Estás seguro de que quieres crear este evento?")) return;
 
@@ -28,7 +30,7 @@ export default function CrearEvento() {
             await axios.get("/sanctum/csrf-cookie");
             await axios.post("/api/evento", nuevoEvento);
             alert("Evento creado correctamente");
-            window.location.href = '/eventos';
+            navigate('/eventos');
         } catch (error) {
             console.error("Error creando el evento:", error);
         }

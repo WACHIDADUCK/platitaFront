@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import '../styles/asociaciones.css';
 import { format } from 'date-fns';
 import { useProvider } from '../providers/ContextProvider';
@@ -12,7 +12,7 @@ export default function Asociaciones() {
     const [newComment, setNewComment] = useState("");
     const user = JSON.parse(sessionStorage.getItem('user'));
     const idUser = user ? user.id : null;
-
+    const navigate = useNavigate();
 
     const id = useParams().id;
     useEffect(() => {
@@ -38,7 +38,7 @@ export default function Asociaciones() {
             console.log("Nuevo comentario:", response.data);
             setShowModal(false);
             // Actualiza los comentarios localmente para reflejar el nuevo comentario
-            window.location.reload();
+            navigate(0);
         } catch (error) {
             console.error("Error añadiendo el comentario:", error);
         }

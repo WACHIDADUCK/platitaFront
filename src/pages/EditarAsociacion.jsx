@@ -1,17 +1,15 @@
 import axios from "../hooks/axios";
 import { useProvider } from '../providers/ContextProvider';
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-
-
 
 export default function CrearAsociacion() {
 
-    const esGestor = useProvider().state.esGestor;
-
     const { state } = useProvider();
+    const esGestor = state.esGestor;
     const user = JSON.parse(sessionStorage.getItem('user'));
     const idUser = user ? user.id : null;
+    const navigate = useNavigate();
 
     console.log(state.url);
 
@@ -39,7 +37,7 @@ export default function CrearAsociacion() {
             await axios.get(`sanctum/csrf-cookie`);
             await axios.put(`api/asociacion/${id}`, nuevaAsociacion);
             alert("Asociación actualizada correctamente");
-            window.location.href = `/asociacion/${id}`;
+            navigate(`/asociacion/${id}`);
         } catch (error) {
             console.error("Error actualizando la asociación:", error);
         }
@@ -72,7 +70,7 @@ export default function CrearAsociacion() {
         <div className="crearAsociacion flex-center">
             <div className="crearAsociacionForm">
                 <form method="POST" onSubmit={handleSubmit}>
-                    <h3>Crear Asociación</h3>
+                    <h3>Editar Asociación</h3>
                     <div>
                         <label htmlFor="">Nombre</label>
                         <input
