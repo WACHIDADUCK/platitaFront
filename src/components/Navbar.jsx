@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "../hooks/axios";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function Navbar() {
     const [login, setLogin] = useState(false);
     const [busqueda, setBusqueda] = useState("");
     const [tipoBuesqueda, setTipoBusqueda] = useState("asociacion");
     const user = JSON.parse(sessionStorage.getItem('user')) || {};
+    const navigate = useNavigate();
     //const idUser = user ? user.id : null;
 
     useEffect(() => {
@@ -22,13 +23,13 @@ export default function Navbar() {
     function handleBusqueda() {
         switch (tipoBuesqueda) {
             case "asociacion":
-                window.location.href = `/asociaciones?busqueda=${busqueda}`;
+                navigate(`/asociaciones?busqueda=${busqueda}`);
                 break;
             case "evento":
-                window.location.href = `/eventos?busqueda=${busqueda}`;
+                navigate(`/eventos?busqueda=${busqueda}`);
                 break;
             default:
-                window.location.href = `/`;
+                navigate('/');
                 break;
         }
     }
