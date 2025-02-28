@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import '../styles/asociaciones.css';
-import { format } from 'date-fns';
 import { useProvider } from '../providers/ContextProvider';
 import axios from "../hooks/axios";
 import '../styles/admin.css';
-
 
 export default function Admin() {
     const { state } = useProvider();
     const [asociaciones, setAsociaciones] = useState([]);
     const user = JSON.parse(sessionStorage.getItem('user'));
     const idUser = user ? user.id : null;
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (state?.asociaciones) setAsociaciones(state.asociaciones);
@@ -26,7 +25,7 @@ export default function Admin() {
             await axios.get(`sanctum/csrf-cookie`);
             await axios.patch(`api/asociacion/${id}`, { acreditado: !acreditacion });
             alert("Asociación actualizada correctamente");
-            window.location.reload();
+            navigate(0);
         } catch (error) {
             console.error("Error actualizando la asociación:", error);
         }

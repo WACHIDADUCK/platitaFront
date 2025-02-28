@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { useFetch } from "../../hooks/useFetch";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 import '../../styles/eventos.css';
@@ -14,6 +13,7 @@ export default function Evento() {
     const [newComment, setNewComment] = useState("");
     const user = JSON.parse(sessionStorage.getItem('user'));
     const idUser = user ? user.id : null;
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (state?.eventos) setEventos(state.eventos);
@@ -41,7 +41,7 @@ export default function Evento() {
 
             console.log("Nuevo comentario:", response.data);
             setShowModal(false);
-            window.location.reload();
+            navigate(0);
         } catch (error) {
             console.error("Error añadiendo el comentario:", error);
         }
