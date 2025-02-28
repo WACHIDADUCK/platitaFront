@@ -1,13 +1,12 @@
 import axios from "../hooks/axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useProvider } from '../providers/ContextProvider';
 
-
 export default function CrearAsociacion() {
-
     const { state } = useProvider();
     const user = JSON.parse(sessionStorage.getItem('user'));
     const idUser = user ? user.id : null;
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -28,7 +27,7 @@ export default function CrearAsociacion() {
             await axios.get(`sanctum/csrf-cookie`);
             await axios.post(`api/asociacion`, nuevaAsociacion);
             alert("Asociación creada correctamente");
-            window.location.href = '/asociaciones';
+            navigate('/asociaciones');
         } catch (error) {
             console.error("Error creando la asociación:", error);
         }
