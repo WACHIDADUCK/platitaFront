@@ -1,6 +1,6 @@
 
 import { useCalendarApp, ScheduleXCalendar } from '@schedule-x/react'
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
     createViewDay,
     createViewMonthAgenda,
@@ -10,10 +10,8 @@ import {
 import { createEventsServicePlugin } from '@schedule-x/events-service'
 import '@schedule-x/theme-default/dist/index.css'
 import '../styles/calendar.css';
-import { useProvider } from '../providers/ContextProvider';
 
-
-export default function Calendario({eventos}) {
+export default function Calendario({ eventos }) {
 
     console.log(eventos);
 
@@ -21,7 +19,7 @@ export default function Calendario({eventos}) {
     const eventsService = useState(() => createEventsServicePlugin())[0]
 
     const calendar = useCalendarApp({
-        views: [createViewMonthGrid(), 
+        views: [createViewMonthGrid(),
             // createViewDay(), createViewWeek(), createViewMonthAgenda()
 
         ],

@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import axios from '../hooks/axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordConfirmation, setPasswordConfirmation] = useState('');
+    const navigate = useNavigate();
 
     const handleRegister = async (e) => {
         e.preventDefault();
@@ -17,7 +19,8 @@ export default function Login() {
             const comprobar = await axios.get("/api/user");
             console.log(comprobar);
 
-            window.location.href = '/';
+            navigate('/');
+            navigate(0);
         } catch (error) {
             console.error('Error al iniciar sesión:', error);
         }

@@ -1,18 +1,20 @@
-import { useState } from 'react';
 import axios from '../hooks/axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function Logout() {
+    const navigate = useNavigate();
 
     const handleLogout = async (e) => {
         e.preventDefault();
         try {
             const response = await axios.post('/logout');
             console.log(response);
-            window.location.href = '/';
+
             if (response) {
                 sessionStorage.removeItem('user');
             }
-
+            navigate('/');
+            navigate(0);
         } catch (error) {
             console.error('Error al cerrar sesión:', error);
         }

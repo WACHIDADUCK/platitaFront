@@ -1,10 +1,12 @@
 import axios from "../../hooks/axios";
+import { useNavigate } from "react-router-dom";
 
 export default function CrearEvento() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const user = JSON.parse(sessionStorage.getItem('user'));
         const idUser = user ? user.id : null;
+        const navigate = useNavigate();
 
         if (!window.confirm("¿Estás seguro de que quieres crear este evento?")) return;
 
@@ -28,7 +30,7 @@ export default function CrearEvento() {
             await axios.get("/sanctum/csrf-cookie");
             await axios.post("/api/evento", nuevoEvento);
             alert("Evento creado correctamente");
-            window.location.href = '/eventos';
+            navigate('/eventos');
         } catch (error) {
             console.error("Error creando el evento:", error);
         }
@@ -46,6 +48,10 @@ export default function CrearEvento() {
                     <div>
                         <label htmlFor="descripcion">Descripción</label>
                         <input type="text" rows="5" name="descripcion" required />
+                    </div>
+                    <div>
+                        <label htmlFor="lugar">Lugar</label>
+                        <input type="text" placeholder="" name="lugar" required />
                     </div>
                     <div>
                         <label htmlFor="tipo">Tipo</label>
@@ -91,8 +97,8 @@ export default function CrearEvento() {
                         <input type="number" name="aforo_no_socios" required />
                     </div>
                     <div>
-                        <label htmlFor="voluntarios">Voluntarios necesarios</label>
-                        <input type="number" name="voluntarios" required />
+                        <label htmlFor="aforo_voluntarios">Voluntarios necesarios</label>
+                        <input type="number" name="aforo_voluntarios" required />
                     </div>
                     <div>
                         <label htmlFor="imagen">Imágenes</label>
